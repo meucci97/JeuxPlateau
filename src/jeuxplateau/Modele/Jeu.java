@@ -19,7 +19,7 @@ public abstract class Jeu {
        protected abstract void genererPieces();
        protected abstract void genererJoueur();
        protected abstract void genererGrille();
-       protected abstract void joeur();
+       protected abstract void jouer();
 
     public Jeu(int x, int y) {
         
