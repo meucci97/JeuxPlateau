@@ -10,5 +10,38 @@ package jeuxplateau.Modele;
  * @author Stefano
  */
 public class Case {
+    private boolean isEmpty;
+    private Piece piece;
+    private int position;
+
+    public boolean isIsEmpty() {
+        return isEmpty;
+    }
+
+    public void setIsEmpty(boolean isEmpty) {
+        this.isEmpty = isEmpty;
+    }
+
+    public Piece getPiece() {
+        return piece;
+    }
+
+    public void setPiece(Piece piece) {
+        this.piece = piece;
+    }
+
+    public int getPosition() {
+        return position;
+    }
+
+    public void setPosition(int position) {
+        this.position = position;
+    }
+
+    public Case() {
+        isEmpty=true;
+        piece= null;
+        position=-1;
+    }
     
 }
