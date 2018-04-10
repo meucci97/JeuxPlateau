@@ -22,9 +22,10 @@ public abstract class Jeu {
        protected abstract void jouer();
 
     public Jeu(int x, int y) {
-        
+        maGrille = new Grille(x, y);
+        mesJoueurs = new Vector<Joueur>();
+        mesPieces=new Vector<Piece>();
+        isDone= false;
+        maGrille.viewGrille();
     }
-    
-       
-       
 }
