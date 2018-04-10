@@ -12,6 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import jeuxplateau.Modele.Grille;
 
 /**
  *
@@ -21,6 +22,8 @@ public class JeuxPlateau extends Application {
     
     @Override
     public void start(Stage primaryStage) {
+        Grille maGrille= new Grille(5,7);
+        maGrille.viewGrille();
         Button btn = new Button();
         btn.setText("Say 'Hello World'");
         btn.setOnAction(new EventHandler<ActionEvent>() {
