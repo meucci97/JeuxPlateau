@@ -5,10 +5,26 @@
  */
 package jeuxplateau.Modele;
 
+import java.util.Vector;
+
 /**
  *
  * @author Stefano
  */
-public class Jeu {
+public abstract class Jeu {
+       protected Grille maGrille;
+       protected Vector<Joueur> mesJoueurs;
+       protected Vector<Piece> mesPieces;
+       protected boolean isDone;
+       protected abstract void genererPieces();
+       protected abstract void genererJoueur();
+       protected abstract void genererGrille();
+       protected abstract void joeur();
+
+    public Jeu(int x, int y) {
+        
+    }
     
+       
+       
 }
