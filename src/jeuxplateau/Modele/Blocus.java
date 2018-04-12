@@ -9,7 +9,35 @@ package jeuxplateau.Modele;
  *
  * @author Stefano
  */
-public class Blocus {
-    
-    
+public class Blocus extends Jeu {
+
+    public Blocus(int x, int y) {
+        super(x, y);
+        genererJoueur("J1");
+        genererJoueur("J2");
+        genererJoueur("J3");
+        genererJoueur("J4");
+    }
+
+    @Override
+    protected void genererPieces() {
+
+    }
+
+    @Override
+    protected void genererJoueur(String idJoueur) {
+        Joueur monJoueur = new Joueur(idJoueur);
+        mesJoueurs.add(monJoueur);
+    }
+
+    @Override
+    protected void chargerGrille(Grille oldGrille) {
+        maGrille = oldGrille;
+    }
+
+    @Override
+    protected void jouer() {
+
+    }
+
 }
