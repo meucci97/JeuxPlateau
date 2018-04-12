@@ -23,7 +23,7 @@ public class JeuxPlateau extends Application {
     
     @Override
     public void start(Stage primaryStage) {
-        Tetris monTetris= new Tetris(5,7);
+        Tetris monTetris= new Tetris(5,5);
         Button btn = new Button();
         btn.setText("Say 'Hello World'");
         btn.setOnAction(new EventHandler<ActionEvent>() {

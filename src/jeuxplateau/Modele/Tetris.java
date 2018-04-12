@@ -10,9 +10,19 @@ package jeuxplateau.Modele;
  * @author Stefano
  */
 public class Tetris extends Jeu {
-    
+    private int niveau;
+
+    public int getNiveau() {
+        return niveau;
+    }
+
+    public void setNiveau(int niveau) {
+        this.niveau = niveau;
+    }
     public Tetris(int x, int y) {
         super(x, y);
+        genererJoueur("J1");
+        
     }
 
     @Override

@@ -11,10 +11,25 @@ package jeuxplateau.Modele;
  */
 public class Joueur {
     private String idJoueur;
+    private int score;
 
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
     public Joueur(String idJoueur) {
         this.idJoueur = idJoueur;
+        this.score=0;
     }
+
+    public Joueur(String idJoueur, int score) {
+        this.idJoueur = idJoueur;
+        this.score = score;
+    }
+    
 
     public String getIdJoueur() {
         return idJoueur;
