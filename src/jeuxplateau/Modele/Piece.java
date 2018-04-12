@@ -13,11 +13,18 @@ public class Piece {
     private int orientation;
     private int idPiece;
     private int[][] matricePiece;
-    private Joueur joueur;
+    private Joueur joueur = null;
     private int pointOrientation;
 
     public Piece() {
 
+    }
+
+    public Piece(int orientation, int idPiece, int[][] matricePiece, int pointOrientation) {
+        this.orientation = orientation;
+        this.idPiece = idPiece;
+        this.matricePiece = matricePiece;
+        this.pointOrientation = pointOrientation;
     }
 
     public int getOrientation() {
