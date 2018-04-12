@@ -25,13 +25,14 @@ public class Tetris extends Jeu {
     }
 
     @Override
-    public void genererJoueur() {
-
+    public void genererJoueur(String idJoueur) {
+       Joueur monJoueur= new Joueur(idJoueur);
+       mesJoueurs.add(monJoueur);
     }
 
     @Override
-    protected void genererGrille() {
-
+    protected void genererGrille(Grille oldGrille) {
+        maGrille=oldGrille;
     }
 
     @Override

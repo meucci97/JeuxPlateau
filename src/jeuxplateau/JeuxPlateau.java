@@ -13,6 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import jeuxplateau.Modele.Grille;
+import jeuxplateau.Modele.Tetris;
 
 /**
  *
@@ -22,8 +23,7 @@ public class JeuxPlateau extends Application {
     
     @Override
     public void start(Stage primaryStage) {
-        Grille maGrille= new Grille(5,7);
-        maGrille.viewGrille();
+        Tetris monTetris= new Tetris(5,7);
         Button btn = new Button();
         btn.setText("Say 'Hello World'");
         btn.setOnAction(new EventHandler<ActionEvent>() {

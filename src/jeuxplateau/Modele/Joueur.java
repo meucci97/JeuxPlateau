@@ -10,5 +10,18 @@ package jeuxplateau.Modele;
  * @author Stefano
  */
 public class Joueur {
+    private String idJoueur;
+
+    public Joueur(String idJoueur) {
+        this.idJoueur = idJoueur;
+    }
+
+    public String getIdJoueur() {
+        return idJoueur;
+    }
+
+    public void setIdJoueur(String idJoueur) {
+        this.idJoueur = idJoueur;
+    }
     
 }
