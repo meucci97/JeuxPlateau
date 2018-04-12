@@ -18,7 +18,7 @@ public abstract class Jeu {
        protected boolean isDone;
        protected abstract void genererPieces();
        protected abstract void genererJoueur(String idJoueur);
-       protected abstract void genererGrille(Grille oldGrille);
+       protected abstract void chargerGrille(Grille oldGrille);
        protected abstract void jouer();
 
     public Jeu(int x, int y) {
