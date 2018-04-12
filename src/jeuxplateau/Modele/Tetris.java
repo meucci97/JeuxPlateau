@@ -10,7 +10,7 @@ package jeuxplateau.Modele;
  * @author Stefano
  */
 public class Tetris extends Jeu {
-
+    
     public Tetris(int x, int y) {
         super(x, y);
     }
@@ -31,7 +31,7 @@ public class Tetris extends Jeu {
     }
 
     @Override
-    protected void genererGrille(Grille oldGrille) {
+    protected void chargerGrille(Grille oldGrille) {
         maGrille=oldGrille;
     }
 
