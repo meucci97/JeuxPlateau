@@ -5,6 +5,8 @@
  */
 package jeuxplateau.Modele;
 
+import jeuxplateau.utilitaires.JsonParsing;
+
 /**
  *
  * @author Stefano
@@ -19,6 +21,7 @@ public class Tetris extends Jeu {
     public void setNiveau(int niveau) {
         this.niveau = niveau;
     }
+
     public Tetris(int x, int y) {
         super(x, y);
         genererJoueur("J1");
@@ -27,16 +30,12 @@ public class Tetris extends Jeu {
 
     @Override
     public void genererPieces() {
-
-        // json
-        // appelle une méthode qui créer une matrice (i, j)
-
-        //mesPieces.add();
+        Piece piece = JsonParsing.genererPieceAleatoire("pieces/tetris.json");
     }
 
     @Override
     public void genererJoueur(String idJoueur) {
-       Joueur monJoueur= new Joueur(idJoueur);
+       Joueur monJoueur = new Joueur(idJoueur);
        mesJoueurs.add(monJoueur);
     }
 
