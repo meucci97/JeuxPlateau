@@ -68,6 +68,17 @@ public class Piece {
     }
 
     public void pivoter() {
-        
+        int nbLignes = this.matricePiece.length;
+        int nbColonnes = this.matricePiece[0].length;
+
+        int[][] matricePivotee = new int[nbLignes][nbColonnes];
+
+        for (int i = 0; i < this.matricePiece.length; i++) {
+            for (int j = 0; j < this.matricePiece[0].length; j++) {
+                matricePivotee[j][ (nbColonnes-1)- i] = this.matricePiece[i][j];
+            }
+        }
+
+        this.matricePiece = matricePivotee;
     }
 }

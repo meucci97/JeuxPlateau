@@ -12,14 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-import jeuxplateau.Modele.Grille;
-import jeuxplateau.Modele.Piece;
 import jeuxplateau.Modele.Tetris;
-import jeuxplateau.utilitaires.JsonParsing;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-
-import java.io.FileReader;
 
 /**
  *
@@ -28,7 +21,7 @@ import java.io.FileReader;
 public class JeuxPlateau extends Application {
     
     @Override
-    public void start(Stage primaryStage) {
+    public void start(Stage primaryStage) throws Exception {
         Tetris monTetris = new Tetris(5,5);
         monTetris.genererPieces();
 

@@ -30,7 +30,9 @@ public class Tetris extends Jeu {
 
     @Override
     public void genererPieces() {
-        Piece piece = JsonParsing.genererPieceAleatoire("pieces/tetris.json");
+        Piece piece = JsonParsing.genererPieceAleatoire("JSONTetris.json");
+
+        mesPieces.add(piece);
     }
 
     @Override
