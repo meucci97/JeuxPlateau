@@ -66,4 +66,8 @@ public class Piece {
     public void setPointOrientation(int pointOrientation) {
         this.pointOrientation = pointOrientation;
     }
+
+    public void pivoter() {
+        
+    }
 }
