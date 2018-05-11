@@ -77,8 +77,64 @@ public class JsonParsing {
     }
 
     public static Vector<Piece> genererPieces(String filename) {
-        Vector<Piece> pieces = new Vector<>();
 
-        return pieces;
+        try {
+            JSONObject json = new JsonParsing().parseJson(filename);
+            Vector<Piece> pieces = new Vector<>();
+
+            // Nombre de pièces
+            int nbPieces = Integer.parseInt(json.get("nombrePieces").toString());
+
+            for (int noPiece = 0; noPiece < nbPieces; noPiece++) {
+
+                // Tableau de toutes les pièces
+                JSONArray piecesArray = (JSONArray) json.get("pieces");
+                JSONObject pieceMap = (JSONObject) piecesArray.get(noPiece);
+
+                // Matrice de la pièce
+                //ArrayList<ArrayList<Long>> matrice = new ArrayList<>();
+                JSONArray matriceJSON = (JSONArray) pieceMap.get("points");
+                int[][] matrice = new int[4][4];
+
+                for (int i = 0; i < matriceJSON.size(); i++) {
+                    JSONArray elt = (JSONArray) matriceJSON.get(i);
+                    int[] ligne = new int[4];
+
+                    for(int j = 0; j < elt.size(); j++) {
+                        int number = (int) (long) elt.get(j);
+
+                        ligne[j] = number;
+                    }
+
+                    matrice[i] = ligne;
+                }
+
+                // Couleur de la pièce
+                String couleur = (String) pieceMap.get("couleur");
+
+                // Orientation par défaut et point d'orientation de la pièce
+                int orientation = Integer.parseInt(json.get("orientationDefaut").toString());
+
+                // Tableau point orientation
+                Map pointOrientationMap = (Map) json.get("pointOrientation");
+                int pointOrientationX = Integer.parseInt(pointOrientationMap.get("x").toString());
+                int pointOrientationY = Integer.parseInt(pointOrientationMap.get("y").toString());
+                int pointOrientation[] = { pointOrientationX, pointOrientationY };
+
+                // Création de la pièce
+                Piece piece = new Piece(orientation, noPiece, matrice, pointOrientation, couleur);
+
+                pieces.add(piece);
+            }
+
+            System.out.println(pieces);
+
+            return pieces;
+
+        } catch (Exception e) {
+            e.getStackTrace();
+        }
+
+        return new Vector<Piece>();
     }
 }
