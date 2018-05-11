@@ -1,159 +1,95 @@
 {
-  "TetriminoO": {
-    "points": [
-      "0",
-      "0",
-      "0",
-      "0",
-      "0",
-      "1",
-      "1",
-      "0",
-      "0",
-      "1",
-      "1",
-      "0",
-      "0",
-      "0",
-      "0",
-      "0"
-    ],
-    "identifiant": "0",
-    "couleur": "yellow"
+  "pieces":
+  [
+    {
+      "nom": "TetriminoO",
+      "identifiant": 0,
+      "couleur": "yellow",
+      "points":
+      [
+        [0, 0, 0, 0],
+        [0, 1, 1, 0],
+        [0, 1, 1, 0],
+        [0, 0, 0, 0]
+      ]
+    },
+    {
+      "nom": "TetriminoI",
+      "identifiant": 1,
+      "couleur": "cyan",
+      "points":
+      [
+        [0, 0, 0, 0],
+        [1, 1, 1, 1],
+        [0, 0, 0, 0],
+        [0, 0, 0, 0]
+      ]
+    },
+    {
+      "nom": "TetriminoS",
+      "identifiant": 2,
+      "couleur": "green",
+      "points":
+      [
+        [0, 0, 0, 0],
+        [0, 0, 1, 1],
+        [0, 1, 1, 0],
+        [0, 0, 0, 0]
+      ]
+    },
+    {
+      "nom": "TetriminoZ",
+      "identifiant": 3,
+      "couleur": "red",
+      "points":
+      [
+        [0, 0, 0, 0],
+        [0, 1, 1, 0],
+        [0, 0, 1, 1],
+        [0, 0, 0, 0]
+      ]
+    },
+    {
+      "nom": "TetriminoL",
+      "identifiant": 4,
+      "couleur": "orange",
+      "points":
+      [
+        [0, 0, 0, 0],
+        [0, 1, 1, 1],
+        [0, 1, 0, 0],
+        [0, 0, 0, 0]
+      ]
+    },
+    {
+      "nom": "TetriminoJ",
+      "identifiant": 5,
+      "couleur": "blue",
+      "points":
+      [
+        [0, 0, 0, 0],
+        [0, 1, 1, 1],
+        [0, 0, 0, 1],
+        [0, 0, 0, 0]
+      ]
+    },
+    {
+      "nom": "TetriminoT",
+      "identifiant": 6,
+      "couleur": "purple",
+      "points":
+      [
+        [0, 0, 0, 0],
+        [0, 1, 1, 1],
+        [0, 0, 1, 0],
+        [0, 0, 0, 0]
+      ]
+    }
+  ],
+  "nombrePieces": 7,
+  "pointOrientation": {
+    "x": 1,
+    "y": 2
   },
-  "TetriminoI": {
-    "points": [
-      "0",
-      "0",
-      "0",
-      "0",
-      "1",
-      "1",
-      "1",
-      "1",
-      "0",
-      "0",
-      "0",
-      "0",
-      "0",
-      "0",
-      "0",
-      "0"
-    ],
-    "identifiant": "1",
-    "couleur": "cyan"
-  },
-  "TetriminoS": {
-    "points": [
-      "0",
-      "0",
-      "0",
-      "0",
-      "0",
-      "0",
-      "1",
-      "1",
-      "0",
-      "1",
-      "1",
-      "0",
-      "0",
-      "0",
-      "0",
-      "0"
-    ],
-    "identifiant": "2",
-    "couleur": "green"
-  },
-  "TetriminoZ": {
-    "points": [
-      "0",
-      "0",
-      "0",
-      "0",
-      "0",
-      "1",
-      "1",
-      "0",
-      "0",
-      "0",
-      "1",
-      "1",
-      "0",
-      "0",
-      "0",
-      "0"
-    ],
-    "identifiant": "3",
-    "couleur": "red"
-  },
-  "TetriminoL": {
-    "points": [
-      "0",
-      "0",
-      "0",
-      "0",
-      "1",
-      "1",
-      "1",
-      "1",
-      "1",
-      "0",
-      "0",
-      "0",
-      "0",
-      "0",
-      "0",
-      "0"
-    ],
-    "identifiant": "4",
-    "couleur": "orange"
-  },
-  "TetriminoJ": {
-    "points": [
-      "0",
-      "0",
-      "0",
-      "0",
-      "0",
-      "1",
-      "1",
-      "1",
-      "0",
-      "0",
-      "0",
-      "1",
-      "0",
-      "0",
-      "0",
-      "0"
-    ],
-    "identifiant": "5",
-    "couleur": "blue"
-  },
-  "TetriminoT": {
-    "points": [
-      "0",
-      "0",
-      "0",
-      "0",
-      "0",
-      "1",
-      "1",
-      "1",
-      "0",
-      "0",
-      "1",
-      "0",
-      "0",
-      "0",
-      "0",
-      "0"
-    ],
-    "identifiant": "6",
-    "couleur": "purple"
-  },
-  "taille": "4",
-  "pointOrientation": "6",
-  "orientationDefaut": "0"
+  "orientationDefaut": 0
 }
