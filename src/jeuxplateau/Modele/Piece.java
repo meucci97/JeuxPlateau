@@ -14,17 +14,19 @@ public class Piece {
     private int idPiece;
     private int[][] matricePiece;
     private Joueur joueur = null;
-    private int pointOrientation;
+    private int[] pointOrientation;
+    private  String couleur;
 
     public Piece() {
 
     }
 
-    public Piece(int orientation, int idPiece, int[][] matricePiece, int pointOrientation) {
+    public Piece(int orientation, int idPiece, int[][] matricePiece, int[] pointOrientation, String couleur) {
         this.orientation = orientation;
         this.idPiece = idPiece;
         this.matricePiece = matricePiece;
         this.pointOrientation = pointOrientation;
+        this.couleur = couleur;
     }
 
     public int getOrientation() {
@@ -59,12 +61,20 @@ public class Piece {
         this.joueur = joueur;
     }
 
-    public int getPointOrientation() {
+    public int[] getPointOrientation() {
         return pointOrientation;
     }
 
-    public void setPointOrientation(int pointOrientation) {
+    public void setPointOrientation(int[] pointOrientation) {
         this.pointOrientation = pointOrientation;
+    }
+
+    public String getCouleur() {
+        return couleur;
+    }
+
+    public void setCouleur(String couleur) {
+        this.couleur = couleur;
     }
 
     public void pivoter() {
