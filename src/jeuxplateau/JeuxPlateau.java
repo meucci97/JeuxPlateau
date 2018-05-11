@@ -21,7 +21,7 @@ import jeuxplateau.Modele.Tetris;
 public class JeuxPlateau extends Application {
     
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage primaryStage) {
         Tetris monTetris = new Tetris(5,5);
         monTetris.genererPieces();
 
