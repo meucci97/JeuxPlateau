@@ -13,43 +13,28 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import jeuxplateau.Modele.Tetris;
+import jeuxplateau.Vue.MenuView;
 
 /**
  *
  * @author Stefano
  */
 public class JeuxPlateau extends Application {
-    
+
     @Override
     public void start(Stage primaryStage) {
-        Tetris monTetris = new Tetris(5,5);
-        monTetris.genererPieces();
+//        Tetris monTetris = new Tetris(5,5);
+//        monTetris.genererPieces();
+        MenuView menu= new MenuView(primaryStage);
 
-        Button btn = new Button();
-        btn.setText("Say 'Hello World'");
-        btn.setOnAction(new EventHandler<ActionEvent>() {
-            
-            @Override
-            public void handle(ActionEvent event) {
-                System.out.println("Hello World!");
-            }
-        });
-        
-        StackPane root = new StackPane();
-        root.getChildren().add(btn);
-        
-        Scene scene = new Scene(root, 300, 250);
-        
-        primaryStage.setTitle("Hello World!");
-        primaryStage.setScene(scene);
-        primaryStage.show();
     }
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        launch(args);
+       launch(args);
+
     }
-    
+
 }
