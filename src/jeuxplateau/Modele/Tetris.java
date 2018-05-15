@@ -29,6 +29,17 @@ public class Tetris extends Jeu {
         genererJoueur("J1");
         
     }
+    public Grille getGrille(){
+        return super.maGrille;
+    }
+
+    public Vector<Piece> getMesPieces(){
+        return super.mesPieces;
+    }
+
+    public Vector<Joueur> getMesJoueurs(){
+        return super.mesJoueurs;
+    }
 
     @Override
     public void genererPieces() {
