@@ -45,6 +45,8 @@ public class Piece {
         this.matricePiece = matricePiece;
         this.pointOrientation = pointOrientation;
         this.couleur = couleur;
+        this.positionX=-1;
+        this.positionY=-1;
     }
 
     public int getOrientation() {
