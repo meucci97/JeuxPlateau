@@ -27,8 +27,4 @@ public class TetrisView {
         this.primaryStage.setTitle("Tetris");
         this.primaryStage.show();
     }
-
-    public static void main(String[] args) {
-        launch(args);
-    }
 }
