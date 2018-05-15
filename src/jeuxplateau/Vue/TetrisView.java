@@ -25,6 +25,8 @@ public class TetrisView {
     private static int HAUTEUR_GRILLE = 20;
     private static int LARGEUR_GRILLE = 10;
 
+    private MediaPlayer mediaPlayer;
+
     public TetrisView(Stage primaryStage) {
         this.primaryStage = primaryStage;
         this.root = new Group();
@@ -32,7 +34,8 @@ public class TetrisView {
         String musicFile = "tetris.mp3";
 
         Media sound = new Media(new File(musicFile).toURI().toString());
-        MediaPlayer mediaPlayer = new MediaPlayer(sound);
+        mediaPlayer = new MediaPlayer(sound);
+        mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
         mediaPlayer.play();
 
         // GridPane zone pièce
