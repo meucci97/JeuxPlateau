@@ -16,7 +16,7 @@ public class Grille {
     protected Vector<Vector<Case>> tableau;
     private int width;
     private int height;
-    public Grille(int y, int x) {
+    public Grille(int x, int y) {
         this.height=y;
         this.width=x;
         tableau= new Vector<>();
