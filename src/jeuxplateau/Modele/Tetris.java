@@ -7,6 +7,8 @@ package jeuxplateau.Modele;
 
 import jeuxplateau.utilitaires.JsonParsing;
 
+import java.util.Vector;
+
 /**
  *
  * @author Stefano

@@ -94,11 +94,23 @@ public class JsonParsing {
                 // Matrice de la pièce
                 //ArrayList<ArrayList<Long>> matrice = new ArrayList<>();
                 JSONArray matriceJSON = (JSONArray) pieceMap.get("points");
-                int[][] matrice = new int[4][4];
+
+                int[][] matrice;
+                if(filename.equals("JSONBlockus.json")) {
+                    matrice = new int[5][5];
+                } else {
+                    matrice = new int[4][4];
+                }
 
                 for (int i = 0; i < matriceJSON.size(); i++) {
                     JSONArray elt = (JSONArray) matriceJSON.get(i);
-                    int[] ligne = new int[4];
+
+                    int[] ligne;
+                    if(filename.equals("JSONBlockus.json")) {
+                        ligne = new int[5];
+                    } else {
+                        ligne = new int[4];
+                    }
 
                     for(int j = 0; j < elt.size(); j++) {
                         int number = (int) (long) elt.get(j);
