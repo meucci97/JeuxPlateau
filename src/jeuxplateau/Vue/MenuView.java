@@ -9,6 +9,8 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import jeuxplateau.Controlleur.TetrisControlleur;
+import jeuxplateau.Modele.Tetris;
 
 public class MenuView   {
     private Stage primaryStage;
@@ -37,7 +39,10 @@ public class MenuView   {
         btnTetris.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                new TetrisView(primaryStage);
+                Tetris monTetris = new Tetris(10,20);
+                //monTetris.genererPieces();
+                TetrisControlleur  tetrisControlleur= new TetrisControlleur(monTetris);
+                //new TetrisView(primaryStage);
                 System.out.println("Tetris");
             }
         });
