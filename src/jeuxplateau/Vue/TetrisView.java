@@ -3,6 +3,7 @@ package jeuxplateau.Vue;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -14,7 +15,6 @@ public class TetrisView {
     private Scene plateauxTetris;
     private Group root;
     private GridPane grille;
-    private GridPane piece;
 
     private static int HAUTEUR_GRILLE = 20;
     private static int LARGEUR_GRILLE = 10;
@@ -33,6 +33,23 @@ public class TetrisView {
         btnGrid.add(btnPause, 0, 0);
         btnGrid.add(btnQuitter, 1, 0);
 
+        // GridPane des labels Score, Niveau et Lignes
+        GridPane lbGrid = new GridPane();
+        lbGrid.setTranslateX(275);
+        lbGrid.setTranslateY(250);
+        Label lbScore = new Label("Score : ");
+        Label lbNiveau = new Label("Niveaux : ");
+        Label lbLignes = new Label("Lignes : ");
+        Label score = new Label("0");
+        Label niveau = new Label("1");
+        Label lignes = new Label("0");
+        lbGrid.add(lbScore, 0, 0);
+        lbGrid.add(lbLignes, 0, 1);
+        lbGrid.add(lbNiveau, 0, 2);
+        lbGrid.add(score, 1, 0);
+        lbGrid.add(lignes, 1, 1);
+        lbGrid.add(niveau, 1, 2);
+
         grille = new GridPane();
         for (int ligne = 0; ligne < HAUTEUR_GRILLE; ligne++) {
             for (int colonne = 0; colonne < LARGEUR_GRILLE; colonne++) {
@@ -49,6 +66,7 @@ public class TetrisView {
 
         this.root.getChildren().add(grille);
         this.root.getChildren().add(btnGrid);
+        this.root.getChildren().add(lbGrid);
 
         this.plateauxTetris = new Scene(root, 425, 525);
 
