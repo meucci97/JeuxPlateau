@@ -23,10 +23,27 @@ public class TetrisView {
         this.primaryStage = primaryStage;
         this.root = new Group();
 
+        // GridPane zone pièce
+        GridPane pieceGrid = new GridPane();
+        pieceGrid.setTranslateX(275);
+        pieceGrid.setTranslateY(100);
+        for (int ligne = 0; ligne < 3; ligne++) {
+            for (int colonne = 0; colonne < 3; colonne++) {
+                Rectangle rec = new Rectangle();
+                rec.setWidth(15);
+                rec.setHeight(15);
+                rec.setFill(Color.LIGHTGRAY);
+                rec.setStroke(Color.GRAY);
+                GridPane.setRowIndex(rec, ligne);
+                GridPane.setColumnIndex(rec, colonne);
+                pieceGrid.getChildren().addAll(rec);
+            }
+        }
+
         // GridPane des bouttons Pause et Quitter
         GridPane btnGrid = new GridPane();
         btnGrid.setTranslateX(275);
-        btnGrid.setTranslateY(100);
+        btnGrid.setTranslateY(175);
         btnGrid.setHgap(10);
         Button btnQuitter = new Button("Quitter");
         Button btnPause = new Button("Pause");
@@ -67,6 +84,7 @@ public class TetrisView {
         this.root.getChildren().add(grille);
         this.root.getChildren().add(btnGrid);
         this.root.getChildren().add(lbGrid);
+        this.root.getChildren().add(pieceGrid);
 
         this.plateauxTetris = new Scene(root, 425, 525);
 
