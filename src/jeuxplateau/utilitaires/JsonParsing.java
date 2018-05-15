@@ -98,8 +98,10 @@ public class JsonParsing {
                 int[][] matrice;
                 if(filename.equals("JSONBlockus.json")) {
                     matrice = new int[5][5];
-                } else {
+                } else if(filename.equals("JSONTetris.json")) {
                     matrice = new int[4][4];
+                } else {
+                    matrice = new int[3][3];
                 }
 
                 for (int i = 0; i < matriceJSON.size(); i++) {
@@ -108,8 +110,10 @@ public class JsonParsing {
                     int[] ligne;
                     if(filename.equals("JSONBlockus.json")) {
                         ligne = new int[5];
-                    } else {
+                    } else if(filename.equals("JSONTetris.json")) {
                         ligne = new int[4];
+                    } else {
+                        ligne = new int[3];
                     }
 
                     for(int j = 0; j < elt.size(); j++) {

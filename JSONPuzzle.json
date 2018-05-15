@@ -1,0 +1,55 @@
+{
+    "pieces":
+    [
+        {
+            "nom": "I1",
+            "identifiant": 0,
+            "couleur": "",
+            "points":
+            [
+                [0, 0, 0],
+                [0, 1, 1],
+                [0, 0, 0]
+            ]
+        },
+        {
+            "nom": "I2",
+            "identifiant": 1,
+            "couleur": "",
+            "points":
+            [
+                [0, 0, 0],
+                [1, 1, 1],
+                [0, 0, 0]
+            ]
+        },
+        {
+            "nom": "I3",
+            "identifiant": 2,
+            "couleur": "",
+            "points":
+            [
+                [0, 1, 0],
+                [0, 1, 0],
+                [0, 0, 0]
+            ]
+        },
+        {
+            "nom": "I4",
+            "identifiant": 3,
+            "couleur": "",
+            "points":
+            [
+                [0, 1, 0],
+                [0, 1, 0],
+                [0, 1, 0]
+            ]
+        }
+    ],
+    "nombrePieces": 4,
+    "pointOrientation": {
+        "x": 1,
+        "y": 1
+    },
+    "orientationDefaut": 0
+}
