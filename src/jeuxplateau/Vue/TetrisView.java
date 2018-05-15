@@ -10,7 +10,7 @@ import static javafx.application.Application.launch;
 public class TetrisView {
 
     private Stage primaryStage;
-    private Scene menuScene;
+    private Scene plateauxTetris;
     private Group root;
 
     public TetrisView(Stage primaryStage) {
@@ -22,9 +22,9 @@ public class TetrisView {
 
         this.root.getChildren().add(btn);
 
-        this.menuScene = new Scene(root, 800, 600);
-        this.primaryStage.setScene(menuScene);
-        this.primaryStage.setTitle("Tetris");
-        this.primaryStage.show();
+        this.plateauxTetris = new Scene(root, 800, 600);
+        primaryStage.setScene(plateauxTetris);
+
+
     }
 }

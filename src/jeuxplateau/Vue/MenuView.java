@@ -37,6 +37,7 @@ public class MenuView   {
         btnTetris.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+                new TetrisView(primaryStage);
                 System.out.println("Tetris");
             }
         });
