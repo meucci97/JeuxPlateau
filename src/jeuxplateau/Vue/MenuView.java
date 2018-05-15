@@ -42,7 +42,7 @@ public class MenuView   {
                 Tetris monTetris = new Tetris(10,20);
                 //monTetris.genererPieces();
                 TetrisControlleur  tetrisControlleur= new TetrisControlleur(monTetris);
-                //new TetrisView(primaryStage);
+                new TetrisView(primaryStage);
                 System.out.println("Tetris");
             }
         });

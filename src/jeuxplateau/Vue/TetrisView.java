@@ -2,6 +2,7 @@ package jeuxplateau.Vue;
 
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -22,6 +23,16 @@ public class TetrisView {
         this.primaryStage = primaryStage;
         this.root = new Group();
 
+        // GridPane des bouttons Pause et Quitter
+        GridPane btnGrid = new GridPane();
+        btnGrid.setTranslateX(275);
+        btnGrid.setTranslateY(100);
+        btnGrid.setHgap(10);
+        Button btnQuitter = new Button("Quitter");
+        Button btnPause = new Button("Pause");
+        btnGrid.add(btnPause, 0, 0);
+        btnGrid.add(btnQuitter, 1, 0);
+
         grille = new GridPane();
         for (int ligne = 0; ligne < HAUTEUR_GRILLE; ligne++) {
             for (int colonne = 0; colonne < LARGEUR_GRILLE; colonne++) {
@@ -37,6 +48,7 @@ public class TetrisView {
         }
 
         this.root.getChildren().add(grille);
+        this.root.getChildren().add(btnGrid);
 
         this.plateauxTetris = new Scene(root, 425, 525);
 
