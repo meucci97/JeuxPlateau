@@ -1,9 +1,12 @@
 package jeuxplateau.Vue;
 
+import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -87,6 +90,24 @@ public class TetrisView {
         this.root.getChildren().add(pieceGrid);
 
         this.plateauxTetris = new Scene(root, 425, 525);
+
+        root.requestFocus();
+        this.plateauxTetris.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                switch (event.getCode()) {
+                    case DOWN:
+                        System.out.println("down");
+                        break;
+                    case RIGHT:
+                        System.out.println("right");
+                        break;
+                    case LEFT:
+                        System.out.println("left");
+                        break;
+                }
+            }
+        });
 
         primaryStage.setScene(plateauxTetris);
         primaryStage.setTitle("Tetris");
