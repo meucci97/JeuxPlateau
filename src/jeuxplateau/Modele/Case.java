@@ -41,7 +41,7 @@ public class Case {
     public Case() {
         isEmpty=true;
         piece= null;
-        position=-1;
+        position=0;
     }
     
 }
