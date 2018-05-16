@@ -12,17 +12,20 @@ import java.util.Vector;
  * @author Stefano
  */
 public class Grille {
-    private Vector<Vector<Case>> tableau;
 
+    protected Vector<Vector<Case>> tableau;
+    private int width;
+    private int height;
     public Grille(int x, int y) {
-        
+        this.height=y;
+        this.width=x;
         tableau= new Vector<>();
-        for(int i= 0;i<x;i++){
+        for(int i= 0;i<y;i++){
             tableau.add(new Vector<Case>());
         }
         
         tableau.forEach(row -> {
-            for(int j=0;j<y;j++){
+            for(int j=0;j<x;j++){
                 row.add(new Case());
             }
         });
@@ -35,5 +38,13 @@ public class Grille {
             });
             System.out.println(" ");
         });
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
     }
 }
