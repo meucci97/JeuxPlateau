@@ -35,12 +35,9 @@ public class TetrisView {
         this.primaryStage = primaryStage;
         this.root = new Group();
 
-        String musicFile = "tetris.mp3";
-
-        Media sound = new Media(new File(musicFile).toURI().toString());
-        mediaPlayer = new MediaPlayer(sound);
-        mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
-        mediaPlayer.play();
+        // Lancement de la musique de fond
+        initialiserMusique();
+        lancerMusique();
 
         // GridPane zone pièce
         GridPane pieceGrid = new GridPane();
@@ -139,10 +136,27 @@ public class TetrisView {
             @Override
             public void handle(ActionEvent event) {
                 System.out.println("Pause");
+                arreterMusique();
             }
         });
 
         primaryStage.setScene(plateauxTetris);
         primaryStage.setTitle("Tetris");
+    }
+
+    private void initialiserMusique() {
+        String musicFile = "tetris.mp3";
+
+        Media sound = new Media(new File(musicFile).toURI().toString());
+        mediaPlayer = new MediaPlayer(sound);
+        mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+    }
+
+    private void lancerMusique() {
+        mediaPlayer.play();
+    }
+
+    private void arreterMusique() {
+        mediaPlayer.pause();
     }
 }
