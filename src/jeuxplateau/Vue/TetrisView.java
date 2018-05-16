@@ -1,5 +1,6 @@
 package jeuxplateau.Vue;
 
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -124,6 +125,20 @@ public class TetrisView {
                         System.out.println("space");
                         break;
                 }
+            }
+        });
+
+        btnQuitter.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                System.out.println("Quitter");
+            }
+        });
+
+        btnPause.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                System.out.println("Pause");
             }
         });
 
