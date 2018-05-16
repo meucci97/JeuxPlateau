@@ -12,6 +12,7 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+import jeuxplateau.Modele.Tetris;
 
 import java.io.File;
 
@@ -26,6 +27,8 @@ public class TetrisView {
     private static int LARGEUR_GRILLE = 10;
 
     private MediaPlayer mediaPlayer;
+
+    private Tetris tetris;
 
     public TetrisView(Stage primaryStage) {
         this.primaryStage = primaryStage;
@@ -116,6 +119,9 @@ public class TetrisView {
                         break;
                     case LEFT:
                         System.out.println("left");
+                        break;
+                    case SPACE:
+                        System.out.println("space");
                         break;
                 }
             }
