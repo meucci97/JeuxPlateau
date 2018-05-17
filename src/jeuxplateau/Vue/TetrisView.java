@@ -13,6 +13,7 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+import jeuxplateau.Controlleur.TetrisControlleur;
 import jeuxplateau.Modele.Piece;
 import jeuxplateau.Modele.Tetris;
 
@@ -34,12 +35,14 @@ public class TetrisView {
     private MediaPlayer mediaPlayer;
 
     private Tetris tetris;
+    private TetrisControlleur controlleur;
 
     public TetrisView(Stage primaryStage) {
         this.primaryStage = primaryStage;
         this.root = new Group();
 
         tetris = new Tetris(10, 20);
+        controlleur = new TetrisControlleur(tetris);
 
         // Lancement de la musique de fond
         initialiserMusique();
@@ -181,18 +184,19 @@ public class TetrisView {
                 switch (event.getCode()) {
                     case DOWN:
                         System.out.println("down");
+                        controlleur.clickDownCheck(tetris.getMesPieces().firstElement());
                         break;
                     case RIGHT:
                         System.out.println("right");
+                        controlleur.clickRightCheck(tetris.getMesPieces().firstElement());
                         break;
                     case LEFT:
                         System.out.println("left");
+                        controlleur.clickLeftCheck(tetris.getMesPieces().firstElement());
                         break;
                     case SPACE:
                         System.out.println("space");
-                        tetris.genererPieces();
-                        initZoneProchainePiece();
-
+                        controlleur.borderCheck(tetris.getMesPieces().firstElement());
                         break;
                 }
             }
