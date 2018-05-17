@@ -115,7 +115,7 @@ public class TetrisView {
                 Rectangle rec = new Rectangle();
                 rec.setWidth(25);
                 rec.setHeight(25);
-                rec.setFill(Color.BLACK);
+                rec.setFill(Color.web(tetris.getGrille().getCase(ligne, colonne).getCouleur()));
                 rec.setStroke(Color.GRAY);
                 GridPane.setRowIndex(rec, ligne);
                 GridPane.setColumnIndex(rec, colonne);

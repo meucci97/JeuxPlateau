@@ -45,7 +45,7 @@ public class Grille {
     public void viewGrille(){
         tableau.forEach(row->{
             row.forEach(cellule->{
-                System.out.print(cellule.getPosition()+" ");
+                System.out.print(cellule.getIntOccupe()+" ");
             });
             System.out.println(" ");
         });

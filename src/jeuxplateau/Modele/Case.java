@@ -12,7 +12,7 @@ package jeuxplateau.Modele;
 public class Case {
     private boolean isEmpty;
     private Piece piece;
-    private int position;
+    private int intOccupe;
     private String couleur;
 
     public boolean isIsEmpty() {
@@ -31,12 +31,12 @@ public class Case {
         this.piece = piece;
     }
 
-    public int getPosition() {
-        return position;
+    public int getIntOccupe() {
+        return intOccupe;
     }
 
-    public void setPosition(int position) {
-        this.position = position;
+    public void setIntOccupe(int position) {
+        this.intOccupe = position;
     }
 
     public String getCouleur() {
@@ -50,7 +50,8 @@ public class Case {
     public Case() {
         isEmpty=true;
         piece= null;
-        position=0;
+        intOccupe=0;
+        couleur = "BLACK";
     }
     
 }
