@@ -14,7 +14,16 @@ import java.util.Vector;
  * @author Stefano
  */
 public class Tetris extends Jeu {
-    private int niveau;
+    private int niveau = 1;
+    private int lignes = 0;
+
+    public int getLignes() {
+        return lignes;
+    }
+
+    public void setLignes(int lignes) {
+        this.lignes = lignes;
+    }
 
     public int getNiveau() {
         return niveau;
@@ -22,6 +31,14 @@ public class Tetris extends Jeu {
 
     public void setNiveau(int niveau) {
         this.niveau = niveau;
+    }
+
+    public int getScore() {
+        return super.score;
+    }
+
+    public void setScore(int score) {
+        super.score = score;
     }
 
     public Tetris(int x, int y) {

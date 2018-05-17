@@ -16,6 +16,7 @@ public abstract class Jeu {
        protected Vector<Joueur> mesJoueurs;
        protected Vector<Piece> mesPieces;
        protected boolean isDone;
+       protected int score;
        protected abstract void genererPieces();
        protected abstract void genererJoueur(String idJoueur);
        protected abstract void chargerGrille(Grille oldGrille);
@@ -27,6 +28,7 @@ public abstract class Jeu {
         mesPieces=new Vector<Piece>();
         isDone= false;
         maGrille.viewGrille();
+        score = 0;
     }
     
 }

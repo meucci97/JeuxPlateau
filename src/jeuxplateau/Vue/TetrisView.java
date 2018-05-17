@@ -35,14 +35,16 @@ public class TetrisView {
         this.primaryStage = primaryStage;
         this.root = new Group();
 
+        Tetris monTetris = new Tetris(10,20);
+
         // Lancement de la musique de fond
         initialiserMusique();
         lancerMusique();
 
         // GridPane zone pièce
         GridPane pieceGrid = new GridPane();
-        pieceGrid.setTranslateX(275);
-        pieceGrid.setTranslateY(100);
+        pieceGrid.setTranslateX(300);
+        pieceGrid.setTranslateY(50);
         for (int ligne = 0; ligne < 3; ligne++) {
             for (int colonne = 0; colonne < 3; colonne++) {
                 Rectangle rec = new Rectangle();
@@ -58,8 +60,8 @@ public class TetrisView {
 
         // GridPane des bouttons Pause et Quitter
         GridPane btnGrid = new GridPane();
-        btnGrid.setTranslateX(275);
-        btnGrid.setTranslateY(175);
+        btnGrid.setTranslateX(280);
+        btnGrid.setTranslateY(250);
         btnGrid.setHgap(10);
         Button btnQuitter = new Button("Quitter");
         Button btnPause = new Button("Pause");
@@ -68,14 +70,14 @@ public class TetrisView {
 
         // GridPane des labels Score, Niveau et Lignes
         GridPane lbGrid = new GridPane();
-        lbGrid.setTranslateX(275);
-        lbGrid.setTranslateY(250);
+        lbGrid.setTranslateX(300);
+        lbGrid.setTranslateY(175);
         Label lbScore = new Label("Score : ");
-        Label lbNiveau = new Label("Niveaux : ");
+        Label lbNiveau = new Label("Niveau : ");
         Label lbLignes = new Label("Lignes : ");
-        Label score = new Label("0");
-        Label niveau = new Label("1");
-        Label lignes = new Label("0");
+        Label score = new Label(Integer.toString(monTetris.getScore()));
+        Label niveau = new Label(Integer.toString(monTetris.getNiveau()));
+        Label lignes = new Label(Integer.toString(monTetris.getLignes()));
         lbGrid.add(lbScore, 0, 0);
         lbGrid.add(lbLignes, 0, 1);
         lbGrid.add(lbNiveau, 0, 2);
