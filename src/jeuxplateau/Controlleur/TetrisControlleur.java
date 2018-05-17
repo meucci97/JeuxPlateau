@@ -141,6 +141,16 @@ public class TetrisControlleur {
 
     public boolean lineCheck(){
 
+        /*
+        Points are scored using level + 1 so that points are still scored at level 0.
+        1 Line = 50*(level + 1) points
+        2 Lines = 150*(level + 1) points
+        3 Lines = 350*(level + 1) points
+        4 Lines = 1000*(level + 1) points (aka a Tetris)
+        Clear the board = 2000*(level + 1)
+        Every piece = 10*(level + 1) points
+         */
+
         return true;
     }
 }
