@@ -45,7 +45,7 @@ public class TetrisControlleur {
                         positionDansGrilleJ=piece.getPositionY()+(j+1);
                     }
 
-                    if((positionDansGrilleJ-1)<0){
+                    if((positionDansGrilleJ-1)<0 || (positionDansGrilleJ-1)>=width){
                         return false;
                     }
                     if(!maGrille.getCase(positionDansGrilleI,positionDansGrilleJ-1).isIsEmpty()){
@@ -84,7 +84,7 @@ public class TetrisControlleur {
                         positionDansGrilleJ=piece.getPositionY()+(j+1);
                     }
 
-                    if((positionDansGrilleJ+1)>width){
+                    if((positionDansGrilleJ+1)>=width || (positionDansGrilleJ+1)<0){
                         return false;
                     }
                     if(!maGrille.getCase(positionDansGrilleI,positionDansGrilleJ+1).isIsEmpty()){
