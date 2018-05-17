@@ -5,6 +5,8 @@
  */
 package jeuxplateau.Modele;
 
+import jeuxplateau.Vue.Observateur;
+
 /**
  *
  * @author Stefano
@@ -38,4 +40,13 @@ public class Puzzle extends Jeu {
 
     }
 
+    @Override
+    public void addObservateur(Observateur o) {
+
+    }
+
+    @Override
+    public void notifyObsevateur() {
+
+    }
 }

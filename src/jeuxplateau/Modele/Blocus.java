@@ -5,6 +5,8 @@
  */
 package jeuxplateau.Modele;
 
+import jeuxplateau.Vue.Observateur;
+
 /**
  *
  * @author Stefano
@@ -40,4 +42,13 @@ public class Blocus extends Jeu {
 
     }
 
+    @Override
+    public void addObservateur(Observateur o) {
+
+    }
+
+    @Override
+    public void notifyObsevateur() {
+
+    }
 }

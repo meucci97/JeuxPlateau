@@ -37,13 +37,17 @@ public class TetrisView implements Observateur{
     private Tetris tetris;
     private TetrisControlleur controlleur;
 
-    public TetrisView(Stage primaryStage) {
+    public TetrisView(Stage primaryStage, Tetris tetris) {
         this.primaryStage = primaryStage;
         this.root = new Group();
 
-        tetris = new Tetris(10, 20);
+        this.tetris = tetris;
         controlleur = new TetrisControlleur(tetris);
 
+
+    }
+
+    public void initialisationAll(){
         // Lancement de la musique de fond
         initialiserMusique();
         lancerMusique();
