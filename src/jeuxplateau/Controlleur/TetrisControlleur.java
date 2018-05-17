@@ -18,7 +18,7 @@ public class TetrisControlleur {
         this.monTetris = monTetris;
     }
 
-    public boolean clickLeft(Piece piece){
+    public boolean clickLeftCheck(Piece piece){
         int [][] maPiece= piece.getMatricePiece();
         int width=monTetris.getGrille().getWidth()  ;
         int height=monTetris.getGrille().getHeight();
@@ -57,7 +57,7 @@ public class TetrisControlleur {
         return true;
     }
 
-    public boolean clickRight(Piece piece){
+    public boolean clickRightCheck(Piece piece){
         int [][] maPiece= piece.getMatricePiece();
         int width=monTetris.getGrille().getWidth()  ;
         int height=monTetris.getGrille().getHeight();
@@ -96,7 +96,7 @@ public class TetrisControlleur {
         return true;
     }
 
-    public boolean clickDown(Piece piece){
+    public boolean clickDownCheck(Piece piece){
         int [][] maPiece= piece.getMatricePiece();
         int width=monTetris.getGrille().getWidth()  ;
         int height=monTetris.getGrille().getHeight();
