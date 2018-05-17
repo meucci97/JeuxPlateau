@@ -28,6 +28,9 @@ public class TetrisView {
     private static int HAUTEUR_GRILLE = 20;
     private static int LARGEUR_GRILLE = 10;
 
+    private static int HAUTEUR_FENTRE = 525;
+    private static int LARGEUR_FENETRE = 425;
+
     private MediaPlayer mediaPlayer;
 
     private Tetris tetris;
@@ -47,7 +50,7 @@ public class TetrisView {
         initBouttons();
         initLabels();
 
-        this.plateauxTetris = new Scene(root, 425, 525);
+        this.plateauxTetris = new Scene(root, LARGEUR_FENETRE, HAUTEUR_FENTRE);
 
         initClavier();
 
