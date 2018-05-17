@@ -35,7 +35,10 @@ public class TetrisControlleur {
         if(clickDownCheck(piece)){
             this.monTetris.getMesPieces().firstElement().setPositionX(this.monTetris.getMesPieces().firstElement().getPositionX()+1);
         }else{
-
+            // controle pour suppr les lignes
+            // SI toutes cases d'une ligne complete -> suppression
+            // Descendre les cases du dessus
+            // scoring
         }
     }
     public boolean clickLeftCheck(Piece piece){
@@ -160,6 +163,32 @@ public class TetrisControlleur {
     }
 
     public boolean lineCheck(){
+        //
+        return true;
+    }
+
+    public boolean checkClearedBoard() {
+        return false;
+    }
+
+    public boolean checkPiecePosee() {
+        return false;
+    }
+
+    public int nbLignesEffacees() {
+        return 0;
+    }
+
+    public void changeScore() {
+
+        int newScore = monTetris.getScore();
+        int levelIncrement = monTetris.getNiveau() + 1;
+
+        if(checkClearedBoard()) {
+            newScore += 2000 * levelIncrement;
+            monTetris.setScore(newScore);
+            return;
+        }
 
         /*
         Points are scored using level + 1 so that points are still scored at level 0.
@@ -170,7 +199,5 @@ public class TetrisControlleur {
         Clear the board = 2000*(level + 1)
         Every piece = 10*(level + 1) points
          */
-
-        return true;
     }
 }
