@@ -149,8 +149,11 @@ public class TetrisControlleur {
                         positionDansGrilleJ=piece.getPositionY()+(j+1);
                     }
 
-                    if((positionDansGrilleI+1)<0 || (positionDansGrilleI+1)>=height){
+                    if((positionDansGrilleI+1)>=height){
                         return false;
+                    }
+                    if(positionDansGrilleI<0){
+                        return true;
                     }
                     if(!maGrille.getCase(positionDansGrilleI+1,positionDansGrilleJ).isIsEmpty()){
                         return false;
