@@ -32,7 +32,14 @@ public class Grille {
     }
 
     public Case getCase(int i, int j){
-        return tableau.get(i).get(j);
+        Case maCase;
+        try{
+            maCase= tableau.get(i).get(j);
+        }catch (Exception e){
+            maCase=new Case();
+            maCase.setIsEmpty(false);
+        }
+        return maCase;
     }
     
     public void viewGrille(){

@@ -123,7 +123,7 @@ public class TetrisControlleur {
                         positionDansGrilleJ=piece.getPositionY()+(j+1);
                     }
 
-                    if((positionDansGrilleI)<0){
+                    if((positionDansGrilleI+1)<0 || (positionDansGrilleI+1)>=height){
                         return false;
                     }
                     if(!maGrille.getCase(positionDansGrilleI+1,positionDansGrilleJ).isIsEmpty()){
