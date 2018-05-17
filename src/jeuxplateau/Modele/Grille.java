@@ -30,6 +30,10 @@ public class Grille {
             }
         });
     }
+
+    public Case getCase(int i, int j){
+        return tableau.get(i).get(j);
+    }
     
     public void viewGrille(){
         tableau.forEach(row->{
