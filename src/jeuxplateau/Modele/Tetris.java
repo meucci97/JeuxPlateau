@@ -14,10 +14,10 @@ import java.util.Vector;
  *
  * @author Stefano
  */
-public class Tetris extends Jeu  implements Observable{
+public class Tetris extends Jeu {
     private int niveau = 0;
     private int lignes = 0;
-    private Observateur monObservateur;
+
 
     public int getLignes() {
         return lignes;
@@ -85,11 +85,11 @@ public class Tetris extends Jeu  implements Observable{
 
     @Override
     public void addObservateur(Observateur o) {
-        monObservateur=o;
+        super.monObservateur.add(o);
     }
 
     @Override
     public void notifyObsevateur() {
-        monObservateur.update();
+        super.monObservateur.forEach(observateur -> observateur.update());
     }
 }

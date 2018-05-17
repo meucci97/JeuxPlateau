@@ -5,18 +5,21 @@
  */
 package jeuxplateau.Modele;
 
+import jeuxplateau.Vue.Observateur;
+
 import java.util.Vector;
 
 /**
  *
  * @author Stefano
  */
-public abstract class Jeu {
+public abstract class Jeu implements Observable{
        protected Grille maGrille;
        protected Vector<Joueur> mesJoueurs;
        protected Vector<Piece> mesPieces;
        protected boolean isDone;
        protected int score;
+       protected Vector<Observateur> monObservateur;
        protected abstract void genererPieces();
        protected abstract void genererJoueur(String idJoueur);
        protected abstract void chargerGrille(Grille oldGrille);
@@ -29,6 +32,7 @@ public abstract class Jeu {
         isDone= false;
         maGrille.viewGrille();
         score = 0;
+        monObservateur= new Vector<Observateur>();
     }
     
 }

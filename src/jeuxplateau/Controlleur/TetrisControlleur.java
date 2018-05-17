@@ -20,27 +20,30 @@ public class TetrisControlleur {
     public void clickLeft(Piece piece){
         if(clickLeftCheck(piece)){
             this.monTetris.getMesPieces().firstElement().setPositionY(this.monTetris.getMesPieces().firstElement().getPositionY()-1);
-
+            monTetris.notifyObsevateur();
         }
     }
 
     public void clickRight(Piece piece){
         if(clickRightCheck(piece)){
             this.monTetris.getMesPieces().firstElement().setPositionY(this.monTetris.getMesPieces().firstElement().getPositionY()+1);
-
+            monTetris.notifyObsevateur();
         }
     }
 
     public void clickDown(Piece piece){
         if(clickDownCheck(piece)){
             this.monTetris.getMesPieces().firstElement().setPositionX(this.monTetris.getMesPieces().firstElement().getPositionX()+1);
+            monTetris.notifyObsevateur();
         }else{
             // controle pour suppr les lignes
             // SI toutes cases d'une ligne complete -> suppression
             // Descendre les cases du dessus
             // scoring
         }
+
     }
+
     public boolean clickLeftCheck(Piece piece){
         int [][] maPiece= piece.getMatricePiece();
         int width=monTetris.getGrille().getWidth()  ;
