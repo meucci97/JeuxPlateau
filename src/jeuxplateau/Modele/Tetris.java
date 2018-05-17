@@ -5,6 +5,7 @@
  */
 package jeuxplateau.Modele;
 
+import jeuxplateau.Vue.Observateur;
 import jeuxplateau.utilitaires.JsonParsing;
 
 import java.util.Vector;
@@ -13,9 +14,10 @@ import java.util.Vector;
  *
  * @author Stefano
  */
-public class Tetris extends Jeu {
+public class Tetris extends Jeu  implements Observable{
     private int niveau = 0;
     private int lignes = 0;
+    private Observateur monObservateur;
 
     public int getLignes() {
         return lignes;
@@ -79,5 +81,15 @@ public class Tetris extends Jeu {
     @Override
     protected void jouer() {
 
+    }
+
+    @Override
+    public void addObservateur(Observateur o) {
+        monObservateur=o;
+    }
+
+    @Override
+    public void notifyObsevateur() {
+        monObservateur.update();
     }
 }

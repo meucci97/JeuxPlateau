@@ -19,7 +19,7 @@ import jeuxplateau.Modele.Tetris;
 
 import java.io.File;
 
-public class TetrisView {
+public class TetrisView implements Observateur{
 
     private Stage primaryStage;
     private Scene plateauxTetris;
@@ -201,5 +201,10 @@ public class TetrisView {
                 }
             }
         });
+    }
+
+    @Override
+    public void update() {
+        //Init grille
     }
 }
