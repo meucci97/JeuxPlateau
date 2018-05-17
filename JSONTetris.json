@@ -4,7 +4,7 @@
     {
       "nom": "TetriminoO",
       "identifiant": 0,
-      "couleur": "yellow",
+      "couleur": "YELLOW",
       "points":
       [
         [0, 0, 0, 0],
@@ -16,7 +16,7 @@
     {
       "nom": "TetriminoI",
       "identifiant": 1,
-      "couleur": "cyan",
+      "couleur": "CYAN",
       "points":
       [
         [0, 0, 0, 0],
@@ -28,7 +28,7 @@
     {
       "nom": "TetriminoS",
       "identifiant": 2,
-      "couleur": "green",
+      "couleur": "GREEN",
       "points":
       [
         [0, 0, 0, 0],
@@ -40,7 +40,7 @@
     {
       "nom": "TetriminoZ",
       "identifiant": 3,
-      "couleur": "red",
+      "couleur": "RED",
       "points":
       [
         [0, 0, 0, 0],
@@ -52,7 +52,7 @@
     {
       "nom": "TetriminoL",
       "identifiant": 4,
-      "couleur": "orange",
+      "couleur": "ORANGE",
       "points":
       [
         [0, 0, 0, 0],
@@ -64,7 +64,7 @@
     {
       "nom": "TetriminoJ",
       "identifiant": 5,
-      "couleur": "blue",
+      "couleur": "BLUE",
       "points":
       [
         [0, 0, 0, 0],
@@ -76,7 +76,7 @@
     {
       "nom": "TetriminoT",
       "identifiant": 6,
-      "couleur": "purple",
+      "couleur": "PURPLE",
       "points":
       [
         [0, 0, 0, 0],

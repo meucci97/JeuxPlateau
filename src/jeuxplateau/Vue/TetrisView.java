@@ -13,6 +13,7 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+import jeuxplateau.Modele.Piece;
 import jeuxplateau.Modele.Tetris;
 
 import java.io.File;
@@ -35,22 +36,31 @@ public class TetrisView {
         this.primaryStage = primaryStage;
         this.root = new Group();
 
-        Tetris monTetris = new Tetris(10,20);
+        Tetris monTetris = new Tetris(10, 20);
 
         // Lancement de la musique de fond
         initialiserMusique();
         lancerMusique();
 
         // GridPane zone pièce
+        monTetris.genererPieces();
+        Piece piece = monTetris.getMesPieces().lastElement();
+
         GridPane pieceGrid = new GridPane();
         pieceGrid.setTranslateX(300);
         pieceGrid.setTranslateY(50);
-        for (int ligne = 0; ligne < 3; ligne++) {
-            for (int colonne = 0; colonne < 3; colonne++) {
+        for (int ligne = 0; ligne < 4; ligne++) {
+            for (int colonne = 0; colonne < 4; colonne++) {
                 Rectangle rec = new Rectangle();
                 rec.setWidth(15);
                 rec.setHeight(15);
-                rec.setFill(Color.LIGHTGRAY);
+
+                if (piece.getMatricePiece()[ligne][colonne] == 0) {
+                    rec.setFill(Color.LIGHTGRAY);
+                } else {
+                    rec.setFill(Color.web(piece.getCouleur()));
+                }
+
                 rec.setStroke(Color.GRAY);
                 GridPane.setRowIndex(rec, ligne);
                 GridPane.setColumnIndex(rec, colonne);
