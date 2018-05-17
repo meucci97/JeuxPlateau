@@ -13,6 +13,7 @@ public class Case {
     private boolean isEmpty;
     private Piece piece;
     private int position;
+    private String couleur;
 
     public boolean isIsEmpty() {
         return isEmpty;
@@ -36,6 +37,14 @@ public class Case {
 
     public void setPosition(int position) {
         this.position = position;
+    }
+
+    public String getCouleur() {
+        return couleur;
+    }
+
+    public void setCouleur(String couleur) {
+        this.couleur = couleur;
     }
 
     public Case() {
