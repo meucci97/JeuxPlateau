@@ -51,6 +51,10 @@ public class Grille {
         });
     }
 
+    public void setCase(Piece p, int i, int j){
+        tableau.get(i).get(j).setCase(p);
+    }
+
     public int getWidth() {
         return width;
     }

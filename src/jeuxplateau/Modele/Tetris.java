@@ -56,9 +56,13 @@ public class Tetris extends Jeu {
         return super.mesPieces;
     }
 
+    public void removeFirstPiece(){
+        super.mesPieces.removeElementAt(0);
+    }
     public Vector<Joueur> getMesJoueurs(){
         return super.mesJoueurs;
     }
+
 
     @Override
     public void genererPieces() {

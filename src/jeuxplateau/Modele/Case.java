@@ -47,11 +47,17 @@ public class Case {
         this.couleur = couleur;
     }
 
+    public void setCase(Piece p){
+        isEmpty=false;
+        piece= p;
+        intOccupe=1;
+        couleur = p.getCouleur();
+    }
     public Case() {
         isEmpty=true;
         piece= null;
         intOccupe=0;
         couleur = "BLACK";
     }
-    
+
 }

@@ -43,16 +43,47 @@ public class TetrisControlleur {
     public void clickDown(Piece piece){
         if(clickDownCheck(piece)){
             this.monTetris.getMesPieces().firstElement().setPositionX(this.monTetris.getMesPieces().firstElement().getPositionX()+1);
+            if(!clickDownCheck(piece)){
+                setNewGrilleValue(piece);
+                monTetris.removeFirstPiece();
+                monTetris.genererPieces();
+                monTetris.getMesPieces().firstElement().setPositionX(-3);
+                monTetris.getMesPieces().firstElement().setPositionY(5);
+            }
             monTetris.notifyObsevateur();
         }else{
             // controle pour suppr les lignes
             // SI toutes cases d'une ligne complete -> suppression
             // Descendre les cases du dessus
             // scoring
+            setNewGrilleValue(piece);
+            monTetris.removeFirstPiece();
+            monTetris.genererPieces();
+            monTetris.getMesPieces().firstElement().setPositionX(-3);
+            monTetris.getMesPieces().firstElement().setPositionY(5);
+
         }
 
     }
 
+    public void setNewGrilleValue(Piece piece){
+        int [][] maPiece= piece.getMatricePiece();
+        int width=monTetris.getGrille().getWidth()  ;
+        int height=monTetris.getGrille().getHeight();
+        int positionDansGrilleI=0;
+        int positionDansGrilleJ=0;
+        Grille maGrille=monTetris.getGrille();
+        for(int i=0; i<maPiece.length;i++){
+            for(int j=0;j<maPiece[i].length;j++){
+                if(maPiece[i][j]!=0){
+                    positionDansGrilleI=getPositionDansGrilleI(piece,i);
+                    positionDansGrilleJ=getPositionDansGrilleJ(piece,j);
+                    monTetris.getGrille().getCase(positionDansGrilleI,positionDansGrilleJ).setCase(piece);
+                }
+            }
+        }
+
+    }
     public void clickEspace(Piece piece){
         if(pivotCheck(piece)){
             this.monTetris.getMesPieces().firstElement().pivoter();
