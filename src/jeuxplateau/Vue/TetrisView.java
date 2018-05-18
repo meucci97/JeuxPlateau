@@ -1,5 +1,6 @@
 package jeuxplateau.Vue;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
@@ -28,6 +29,7 @@ public class TetrisView implements Observateur{
     private Scene plateauxTetris;
     private Group root;
     private GridPane grille;
+    private MenuView menuView;
 
     private static int HAUTEUR_GRILLE = 20;
     private static int LARGEUR_GRILLE = 10;
@@ -145,6 +147,8 @@ public class TetrisView implements Observateur{
             @Override
             public void handle(ActionEvent event) {
                 System.out.println("Quitter");
+                menuView = new MenuView(primaryStage);
+                System.out.println("Menu");
             }
         });
 
