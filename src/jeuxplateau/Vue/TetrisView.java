@@ -220,7 +220,7 @@ public class TetrisView implements Observateur{
                     } else if (i == piece.getPointOrientation()[0]) {
                         positionDansGrilleI = piece.getPositionX();
                     } else {
-                        positionDansGrilleI = piece.getPositionX() + (i);
+                        positionDansGrilleI = piece.getPositionX() + (i- piece.getPointOrientation()[0]);
                     }
 
                     if (j < piece.getPointOrientation()[1]) {
@@ -228,7 +228,7 @@ public class TetrisView implements Observateur{
                     } else if (j == piece.getPointOrientation()[1]) {
                         positionDansGrilleJ = piece.getPositionY();
                     } else {
-                        positionDansGrilleJ = piece.getPositionY() + (j);
+                        positionDansGrilleJ = piece.getPositionY() + (j- piece.getPointOrientation()[1]);
                     }
 
                     if (positionDansGrilleI >= 0) {

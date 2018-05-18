@@ -68,7 +68,7 @@ public class TetrisControlleur {
                         positionDansGrilleI=piece.getPositionX();
                     }
                     else{
-                        positionDansGrilleI=piece.getPositionX()+(i);
+                        positionDansGrilleI=piece.getPositionX()+(i- piece.getPointOrientation()[0]);
                     }
 
                     if(j<piece.getPointOrientation()[1]){
@@ -76,7 +76,7 @@ public class TetrisControlleur {
                     }else if(j==piece.getPointOrientation()[1]){
                         positionDansGrilleJ=piece.getPositionY();
                     }else{
-                        positionDansGrilleJ=piece.getPositionY()+(j);
+                        positionDansGrilleJ=piece.getPositionY()+ (j- piece.getPointOrientation()[1]);
                     }
 
                     if((positionDansGrilleJ-1)<0 || (positionDansGrilleJ-1)>=width){
@@ -107,7 +107,7 @@ public class TetrisControlleur {
                         positionDansGrilleI=piece.getPositionX();
                     }
                     else{
-                        positionDansGrilleI=piece.getPositionX()+(i);
+                        positionDansGrilleI=piece.getPositionX()+(i- piece.getPointOrientation()[0]);
                     }
 
                     if(j<piece.getPointOrientation()[1]){
@@ -115,7 +115,7 @@ public class TetrisControlleur {
                     }else if(j==piece.getPointOrientation()[1]){
                         positionDansGrilleJ=piece.getPositionY();
                     }else{
-                        positionDansGrilleJ=piece.getPositionY()+(j);
+                        positionDansGrilleJ=piece.getPositionY()+ (j- piece.getPointOrientation()[1]);
                     }
 
                     if((positionDansGrilleJ+1)>=width || (positionDansGrilleJ+1)<0){
@@ -146,7 +146,7 @@ public class TetrisControlleur {
                         positionDansGrilleI=piece.getPositionX();
                     }
                     else{
-                        positionDansGrilleI=piece.getPositionX()+(i);
+                        positionDansGrilleI=piece.getPositionX()+(i- piece.getPointOrientation()[0]);
                     }
 
                     if(j<piece.getPointOrientation()[1]){
@@ -154,7 +154,7 @@ public class TetrisControlleur {
                     }else if(j==piece.getPointOrientation()[1]){
                         positionDansGrilleJ=piece.getPositionY();
                     }else{
-                        positionDansGrilleJ=piece.getPositionY()+(j);
+                        positionDansGrilleJ=piece.getPositionY()+ (j- piece.getPointOrientation()[1]);
                     }
 
                     if((positionDansGrilleI+1)>=height){
