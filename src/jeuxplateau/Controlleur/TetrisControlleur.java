@@ -207,24 +207,6 @@ public class TetrisControlleur {
     }
 
     public void changeScore() {
-
-        int newScore = monTetris.getScore();
-        int levelIncrement = monTetris.getNiveau() + 1;
-
-        if(checkClearedBoard()) {
-            newScore += 2000 * levelIncrement;
-            monTetris.setScore(newScore);
-            return;
-        }
-
-        /*
-        Points are scored using level + 1 so that points are still scored at level 0.
-        1 Line = 50*(level + 1) points
-        2 Lines = 150*(level + 1) points
-        3 Lines = 350*(level + 1) points
-        4 Lines = 1000*(level + 1) points (aka a Tetris)
-        Clear the board = 2000*(level + 1)
-        Every piece = 10*(level + 1) points
-         */
+        monTetris.setScore(10 * (monTetris.getNiveau() + 1));
     }
 }
