@@ -216,7 +216,7 @@ public class TetrisView implements Observateur{
             for (int j = 0; j < matrice[i].length; j++) {
                 if(matrice[i][j]!=0) {
                     if (i < piece.getPointOrientation()[0]) {
-                        positionDansGrilleI = piece.getPositionX() - (i);
+                        positionDansGrilleI = piece.getPositionX() - (i+1);
                     } else if (i == piece.getPointOrientation()[0]) {
                         positionDansGrilleI = piece.getPositionX();
                     } else {
@@ -224,7 +224,7 @@ public class TetrisView implements Observateur{
                     }
 
                     if (j < piece.getPointOrientation()[1]) {
-                        positionDansGrilleJ = piece.getPositionY() - (j);
+                        positionDansGrilleJ = piece.getPositionY() - (j+1);
                     } else if (j == piece.getPointOrientation()[1]) {
                         positionDansGrilleJ = piece.getPositionY();
                     } else {
@@ -235,7 +235,7 @@ public class TetrisView implements Observateur{
                         Rectangle rec = new Rectangle();
                         rec.setWidth(25);
                         rec.setHeight(25);
-                        rec.setFill(Color.web("orange"));
+                        rec.setFill(Color.web(piece.getCouleur()));
                         rec.setStroke(Color.GRAY);
                         GridPane.setRowIndex(rec, positionDansGrilleI);
                         GridPane.setColumnIndex(rec, positionDansGrilleJ);
