@@ -3,6 +3,7 @@ package jeuxplateau.Vue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -14,10 +15,12 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import jeuxplateau.Controlleur.TetrisControlleur;
+import jeuxplateau.Modele.Case;
 import jeuxplateau.Modele.Piece;
 import jeuxplateau.Modele.Tetris;
 
 import java.io.File;
+import java.util.List;
 
 public class TetrisView implements Observateur{
 
@@ -43,11 +46,9 @@ public class TetrisView implements Observateur{
 
         this.tetris = tetris;
         controlleur = new TetrisControlleur(tetris);
-
-
     }
 
-    public void initialisationAll(){
+    public void initialisationAll() {
         // Lancement de la musique de fond
         initialiserMusique();
         lancerMusique();
@@ -207,8 +208,50 @@ public class TetrisView implements Observateur{
         });
     }
 
+    private void paintPiece() {
+        Piece piece = tetris.getMesPieces().firstElement();
+        int[][] matrice = piece.getMatricePiece();
+
+        int positionDansGrilleI = 0;
+        int positionDansGrilleJ = 0;
+
+        for (int i = 0; i < matrice.length; i++) {
+            for (int j = 0; j < matrice[i].length; j++) {
+                if(matrice[i][j]!=0) {
+                    if (i < piece.getPointOrientation()[0]) {
+                        positionDansGrilleI = piece.getPositionX() - (i + 1);
+                    } else if (i == piece.getPointOrientation()[0]) {
+                        positionDansGrilleI = piece.getPositionX();
+                    } else {
+                        positionDansGrilleI = piece.getPositionX() + (i + 1);
+                    }
+
+                    if (j < piece.getPointOrientation()[1]) {
+                        positionDansGrilleJ = piece.getPositionY() - (j + 1);
+                    } else if (j == piece.getPointOrientation()[1]) {
+                        positionDansGrilleI = piece.getPositionY();
+                    } else {
+                        positionDansGrilleJ = piece.getPositionY() + (j + 1);
+                    }
+
+                    if ((positionDansGrilleI) >= 0) {
+                        Rectangle rec = new Rectangle();
+                        rec.setWidth(25);
+                        rec.setHeight(25);
+                        rec.setFill(Color.web(tetris.getGrille().getCase(positionDansGrilleI, positionDansGrilleI).getCouleur()));
+                        rec.setStroke(Color.GRAY);
+                        GridPane.setRowIndex(rec, positionDansGrilleI);
+                        GridPane.setColumnIndex(rec, positionDansGrilleJ);
+                        grille.getChildren().addAll(rec);
+                    }
+                }
+            }
+        }
+    }
+
     @Override
     public void update() {
-        //Init grille
+        initGrille();
+        paintPiece();
     }
 }
