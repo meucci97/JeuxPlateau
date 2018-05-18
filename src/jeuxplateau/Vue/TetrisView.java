@@ -52,7 +52,7 @@ public class TetrisView implements Observateur{
         // Lancement de la musique de fond
         initialiserMusique();
         lancerMusique();
-
+        initZoneProchainePiece();
         initGrille();
 
         initBouttons();
@@ -216,19 +216,19 @@ public class TetrisView implements Observateur{
             for (int j = 0; j < matrice[i].length; j++) {
                 if(matrice[i][j]!=0) {
                     if (i < piece.getPointOrientation()[0]) {
-                        positionDansGrilleI = piece.getPositionX() - (i + 1);
+                        positionDansGrilleI = piece.getPositionX() - (i);
                     } else if (i == piece.getPointOrientation()[0]) {
                         positionDansGrilleI = piece.getPositionX();
                     } else {
-                        positionDansGrilleI = piece.getPositionX() + (i + 1);
+                        positionDansGrilleI = piece.getPositionX() + (i);
                     }
 
                     if (j < piece.getPointOrientation()[1]) {
-                        positionDansGrilleJ = piece.getPositionY() - (j + 1);
+                        positionDansGrilleJ = piece.getPositionY() - (j);
                     } else if (j == piece.getPointOrientation()[1]) {
-                        positionDansGrilleI = piece.getPositionY();
+                        positionDansGrilleJ = piece.getPositionY();
                     } else {
-                        positionDansGrilleJ = piece.getPositionY() + (j + 1);
+                        positionDansGrilleJ = piece.getPositionY() + (j);
                     }
 
                     if (positionDansGrilleI >= 0) {
