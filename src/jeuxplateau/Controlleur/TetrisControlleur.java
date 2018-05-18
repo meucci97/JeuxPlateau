@@ -17,6 +17,13 @@ public class TetrisControlleur {
     public void setMonTetris(Tetris monTetris) {
         this.monTetris = monTetris;
     }
+
+    public void startGame(){
+        monTetris.getMesPieces().firstElement().setPositionX(-3);
+        monTetris.getMesPieces().firstElement().setPositionX(5);
+        monTetris.notifyObsevateur();
+    }
+
     public void clickLeft(Piece piece){
         if(clickLeftCheck(piece)){
             this.monTetris.getMesPieces().firstElement().setPositionY(this.monTetris.getMesPieces().firstElement().getPositionY()-1);
@@ -152,12 +159,12 @@ public class TetrisControlleur {
                     if((positionDansGrilleI+1)>=height){
                         return false;
                     }
-                    if(positionDansGrilleI<0){
-                        return true;
+                    if(!(positionDansGrilleI<0)){
+                        if(!maGrille.getCase(positionDansGrilleI+1,positionDansGrilleJ).isIsEmpty()){
+                            return false;
+                        }
                     }
-                    if(!maGrille.getCase(positionDansGrilleI+1,positionDansGrilleJ).isIsEmpty()){
-                        return false;
-                    }
+
                 }
             }
         }
