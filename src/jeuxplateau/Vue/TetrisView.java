@@ -215,21 +215,8 @@ public class TetrisView implements Observateur{
         for (int i = 0; i < matrice.length; i++) {
             for (int j = 0; j < matrice[i].length; j++) {
                 if(matrice[i][j]!=0) {
-                    if (i < piece.getPointOrientation()[0]) {
-                        positionDansGrilleI = piece.getPositionX() - (i);
-                    } else if (i == piece.getPointOrientation()[0]) {
-                        positionDansGrilleI = piece.getPositionX();
-                    } else {
-                        positionDansGrilleI = piece.getPositionX() + (i- piece.getPointOrientation()[0]);
-                    }
-
-                    if (j < piece.getPointOrientation()[1]) {
-                        positionDansGrilleJ = piece.getPositionY() - (j);
-                    } else if (j == piece.getPointOrientation()[1]) {
-                        positionDansGrilleJ = piece.getPositionY();
-                    } else {
-                        positionDansGrilleJ = piece.getPositionY() + (j- piece.getPointOrientation()[1]);
-                    }
+                    positionDansGrilleI=controlleur.getPositionDansGrilleI(piece,i);
+                    positionDansGrilleJ=controlleur.getPositionDansGrilleJ(piece,j);
 
                     if (positionDansGrilleI >= 0) {
                         Rectangle rec = new Rectangle();

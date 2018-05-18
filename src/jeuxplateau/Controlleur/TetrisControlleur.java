@@ -62,22 +62,8 @@ public class TetrisControlleur {
         for(int i=0; i<maPiece.length;i++){
             for(int j=0;j<maPiece[i].length;j++){
                 if(maPiece[i][j]!=0){
-                    if(i<piece.getPointOrientation()[0]){
-                       positionDansGrilleI=piece.getPositionX()-(i);
-                    }else if(i==piece.getPointOrientation()[0]){
-                        positionDansGrilleI=piece.getPositionX();
-                    }
-                    else{
-                        positionDansGrilleI=piece.getPositionX()+(i- piece.getPointOrientation()[0]);
-                    }
-
-                    if(j<piece.getPointOrientation()[1]){
-                        positionDansGrilleJ=piece.getPositionY()-(j);
-                    }else if(j==piece.getPointOrientation()[1]){
-                        positionDansGrilleJ=piece.getPositionY();
-                    }else{
-                        positionDansGrilleJ=piece.getPositionY()+ (j- piece.getPointOrientation()[1]);
-                    }
+                    positionDansGrilleI=getPositionDansGrilleI(piece,i);
+                    positionDansGrilleJ=getPositionDansGrilleJ(piece,j);
 
                     if((positionDansGrilleJ-1)<0 || (positionDansGrilleJ-1)>=width){
                         return false;
@@ -101,22 +87,8 @@ public class TetrisControlleur {
         for(int i=0; i<maPiece.length;i++){
             for(int j=0;j<maPiece[i].length;j++){
                 if(maPiece[i][j]!=0){
-                    if(i<piece.getPointOrientation()[0]){
-                        positionDansGrilleI=piece.getPositionX()-(i);
-                    }else if(i==piece.getPointOrientation()[0]){
-                        positionDansGrilleI=piece.getPositionX();
-                    }
-                    else{
-                        positionDansGrilleI=piece.getPositionX()+(i- piece.getPointOrientation()[0]);
-                    }
-
-                    if(j<piece.getPointOrientation()[1]){
-                        positionDansGrilleJ=piece.getPositionY()-(j);
-                    }else if(j==piece.getPointOrientation()[1]){
-                        positionDansGrilleJ=piece.getPositionY();
-                    }else{
-                        positionDansGrilleJ=piece.getPositionY()+ (j- piece.getPointOrientation()[1]);
-                    }
+                    positionDansGrilleI=getPositionDansGrilleI(piece,i);
+                    positionDansGrilleJ=getPositionDansGrilleJ(piece,j);
 
                     if((positionDansGrilleJ+1)>=width || (positionDansGrilleJ+1)<0){
                         return false;
@@ -140,23 +112,8 @@ public class TetrisControlleur {
         for(int i=0; i<maPiece.length;i++){
             for(int j=0;j<maPiece[i].length;j++){
                 if(maPiece[i][j]!=0){
-                    if(i<piece.getPointOrientation()[0]){
-                        positionDansGrilleI=piece.getPositionX()-(i);
-                    }else if(i==piece.getPointOrientation()[0]){
-                        positionDansGrilleI=piece.getPositionX();
-                    }
-                    else{
-                        positionDansGrilleI=piece.getPositionX()+(i- piece.getPointOrientation()[0]);
-                    }
-
-                    if(j<piece.getPointOrientation()[1]){
-                        positionDansGrilleJ=piece.getPositionY()-(j);
-                    }else if(j==piece.getPointOrientation()[1]){
-                        positionDansGrilleJ=piece.getPositionY();
-                    }else{
-                        positionDansGrilleJ=piece.getPositionY()+ (j- piece.getPointOrientation()[1]);
-                    }
-
+                    positionDansGrilleI=getPositionDansGrilleI(piece,i);
+                    positionDansGrilleJ=getPositionDansGrilleJ(piece,j);
                     if((positionDansGrilleI+1)>=height){
                         return false;
                     }
@@ -170,6 +127,31 @@ public class TetrisControlleur {
             }
         }
         return true;
+    }
+
+    public int getPositionDansGrilleI(Piece piece, int row){
+        int positionDansGrilleI;
+        if(row<piece.getPointOrientation()[0]){
+            positionDansGrilleI=piece.getPositionX()-(row);
+        }else if(row==piece.getPointOrientation()[0]){
+            positionDansGrilleI=piece.getPositionX();
+        }
+        else{
+            positionDansGrilleI=piece.getPositionX()+(row- piece.getPointOrientation()[0]);
+        }
+        return positionDansGrilleI;
+    }
+
+    public int getPositionDansGrilleJ(Piece piece, int column){
+        int positionDansGrilleJ;
+        if(column<piece.getPointOrientation()[1]){
+            positionDansGrilleJ=piece.getPositionY()-(column);
+        }else if(column==piece.getPointOrientation()[1]){
+            positionDansGrilleJ=piece.getPositionY();
+        }else{
+            positionDansGrilleJ=piece.getPositionY()+ (column- piece.getPointOrientation()[1]);
+        }
+        return positionDansGrilleJ;
     }
 
     public void borderCheck(Piece piece){
