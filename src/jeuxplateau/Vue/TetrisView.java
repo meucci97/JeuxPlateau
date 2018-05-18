@@ -189,15 +189,15 @@ public class TetrisView implements Observateur{
                 switch (event.getCode()) {
                     case DOWN:
                         System.out.println("down");
-                        controlleur.clickDownCheck(tetris.getMesPieces().firstElement());
+                        controlleur.clickDown(tetris.getMesPieces().firstElement());
                         break;
                     case RIGHT:
                         System.out.println("right");
-                        controlleur.clickRightCheck(tetris.getMesPieces().firstElement());
+                        controlleur.clickRight(tetris.getMesPieces().firstElement());
                         break;
                     case LEFT:
                         System.out.println("left");
-                        controlleur.clickLeftCheck(tetris.getMesPieces().firstElement());
+                        controlleur.clickLeft(tetris.getMesPieces().firstElement());
                         break;
                     case SPACE:
                         System.out.println("space");
@@ -219,22 +219,22 @@ public class TetrisView implements Observateur{
             for (int j = 0; j < matrice[i].length; j++) {
                 if(matrice[i][j]!=0) {
                     if (i < piece.getPointOrientation()[0]) {
-                        positionDansGrilleI = piece.getPositionX() - (i + 1);
+                        positionDansGrilleI = piece.getPositionY() - (i + 1);
                     } else if (i == piece.getPointOrientation()[0]) {
-                        positionDansGrilleI = piece.getPositionX();
+                        positionDansGrilleI = piece.getPositionY();
                     } else {
-                        positionDansGrilleI = piece.getPositionX() + (i + 1);
+                        positionDansGrilleI = piece.getPositionY() + (i + 1);
                     }
 
                     if (j < piece.getPointOrientation()[1]) {
-                        positionDansGrilleJ = piece.getPositionY() - (j + 1);
+                        positionDansGrilleJ = piece.getPositionX() - (j + 1);
                     } else if (j == piece.getPointOrientation()[1]) {
-                        positionDansGrilleI = piece.getPositionY();
+                        positionDansGrilleI = piece.getPositionX();
                     } else {
-                        positionDansGrilleJ = piece.getPositionY() + (j + 1);
+                        positionDansGrilleJ = piece.getPositionX() + (j + 1);
                     }
 
-                    if ((positionDansGrilleI) >= 0) {
+                    if (positionDansGrilleI >= 0) {
                         Rectangle rec = new Rectangle();
                         rec.setWidth(25);
                         rec.setHeight(25);
@@ -249,6 +249,9 @@ public class TetrisView implements Observateur{
         }
     }
 
+    public void startGame(){
+        controlleur.startGame();
+    }
     @Override
     public void update() {
         initGrille();

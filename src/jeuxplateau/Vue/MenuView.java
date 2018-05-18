@@ -47,6 +47,7 @@ public class MenuView   {
                 tetrisView=new TetrisView(primaryStage,(Tetris)monJeu);
                 ((Tetris)monJeu).addObservateur(tetrisView);
                 tetrisView.initialisationAll();
+                tetrisView.startGame();
                 System.out.println("Tetris");
             }
         });
