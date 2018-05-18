@@ -8,6 +8,7 @@ import jeuxplateau.Modele.Tetris;
 import java.util.Vector;
 
 public class TetrisControlleur {
+
     private Tetris monTetris;
 
     public TetrisControlleur(Tetris monTetris) {
@@ -139,7 +140,7 @@ public class TetrisControlleur {
     public int getPositionDansGrilleI(Piece piece, int row){
         int positionDansGrilleI;
         if(row<piece.getPointOrientation()[0]){
-            positionDansGrilleI=piece.getPositionX()-(row);
+            positionDansGrilleI=piece.getPositionX()-(piece.getPointOrientation()[0]-row);
         }else if(row==piece.getPointOrientation()[0]){
             positionDansGrilleI=piece.getPositionX();
         }
@@ -152,7 +153,7 @@ public class TetrisControlleur {
     public int getPositionDansGrilleJ(Piece piece, int column){
         int positionDansGrilleJ;
         if(column<piece.getPointOrientation()[1]){
-            positionDansGrilleJ=piece.getPositionY()-(column);
+            positionDansGrilleJ=piece.getPositionY()-(piece.getPointOrientation()[1]-column);
         }else if(column==piece.getPointOrientation()[1]){
             positionDansGrilleJ=piece.getPositionY();
         }else{
