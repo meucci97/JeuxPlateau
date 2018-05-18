@@ -19,8 +19,9 @@ public class TetrisControlleur {
     }
 
     public void startGame(){
+        monTetris.genererPieces();
         monTetris.getMesPieces().firstElement().setPositionX(-3);
-        monTetris.getMesPieces().firstElement().setPositionX(5);
+        monTetris.getMesPieces().firstElement().setPositionY(5);
         monTetris.notifyObsevateur();
     }
 
@@ -159,9 +160,9 @@ public class TetrisControlleur {
                     if((positionDansGrilleI+1)>=height){
                         return false;
                     }
-                    if(!(positionDansGrilleI<0)){
+                    if(positionDansGrilleI>=0){
                         if(!maGrille.getCase(positionDansGrilleI+1,positionDansGrilleJ).isIsEmpty()){
-                            return false;
+                          //  return false;
                         }
                     }
 

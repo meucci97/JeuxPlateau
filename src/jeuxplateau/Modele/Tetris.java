@@ -46,7 +46,7 @@ public class Tetris extends Jeu {
     public Tetris(int x, int y) {
         super(x, y);
         genererJoueur("J1");
-        
+        genererPieces();
     }
     public Grille getGrille(){
         return super.maGrille;
