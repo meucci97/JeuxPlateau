@@ -49,6 +49,16 @@ public class Piece {
         this.positionY=-1;
     }
 
+    public Piece(Piece p){
+        this.orientation = p.getOrientation();
+        this.idPiece = p.getIdPiece();
+        this.matricePiece = p.getMatricePiece();
+        this.pointOrientation = p.getPointOrientation();
+        this.couleur = p.getCouleur();
+        this.positionX=p.getPositionX();
+        this.positionY=p.getPositionY();
+    }
+
     public int getOrientation() {
         return orientation;
     }

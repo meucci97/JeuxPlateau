@@ -52,6 +52,13 @@ public class TetrisControlleur {
 
     }
 
+    public void clickEspace(Piece piece){
+        if(pivotCheck(piece)){
+            this.monTetris.getMesPieces().firstElement().pivoter();
+            monTetris.notifyObsevateur();
+        }
+    }
+
     public boolean clickLeftCheck(Piece piece){
         int [][] maPiece= piece.getMatricePiece();
         int width=monTetris.getGrille().getWidth()  ;
@@ -154,8 +161,31 @@ public class TetrisControlleur {
         return positionDansGrilleJ;
     }
 
-    public void borderCheck(Piece piece){
-
+    public boolean pivotCheck(Piece piece){
+        Piece tmp =new Piece(piece);
+        tmp.pivoter();
+        int [][] maPiece= tmp.getMatricePiece();
+        int width=monTetris.getGrille().getWidth()  ;
+        int height=monTetris.getGrille().getHeight();
+        int positionDansGrilleI=0;
+        int positionDansGrilleJ=0;
+        Grille maGrille=monTetris.getGrille();
+        for(int i=0; i<maPiece.length;i++) {
+            for (int j = 0; j < maPiece[i].length; j++) {
+                if(maPiece[i][j]!=0){
+                    positionDansGrilleI=getPositionDansGrilleI(tmp,i);
+                    positionDansGrilleJ=getPositionDansGrilleJ(tmp,j);
+                    if(positionDansGrilleI>=height || positionDansGrilleI<0 || positionDansGrilleJ>=width || positionDansGrilleJ<0){
+                        return false;
+                    }else{
+                        if(!maGrille.getCase(positionDansGrilleI,positionDansGrilleJ).isIsEmpty()){
+                            return false;
+                        }
+                    }
+                }
+            }
+        }
+        return true;
     }
 
     public boolean lineCheck(){

@@ -198,7 +198,7 @@ public class TetrisView implements Observateur{
                         break;
                     case SPACE:
                         System.out.println("space");
-                        controlleur.borderCheck(tetris.getMesPieces().firstElement());
+                        controlleur.clickEspace(tetris.getMesPieces().firstElement());
                         break;
                 }
             }
@@ -237,6 +237,7 @@ public class TetrisView implements Observateur{
 
         controlleur.startGame();
     }
+
     @Override
     public void update() {
         initGrille();
