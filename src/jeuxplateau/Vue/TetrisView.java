@@ -80,8 +80,12 @@ public class TetrisView implements Observateur{
         mediaPlayer.play();
     }
 
-    private void arreterMusique() {
+    private void muteMusique() {
         mediaPlayer.pause();
+    }
+
+    private void arreterMusique() {
+        mediaPlayer.stop();
     }
 
     private void initZoneProchainePiece() {
@@ -148,6 +152,7 @@ public class TetrisView implements Observateur{
             public void handle(ActionEvent event) {
                 System.out.println("Quitter");
                 menuView = new MenuView(primaryStage);
+                stopGame();
                 System.out.println("Menu");
             }
         });
@@ -156,7 +161,7 @@ public class TetrisView implements Observateur{
             @Override
             public void handle(ActionEvent event) {
                 System.out.println("Pause");
-                arreterMusique();
+                muteMusique();
             }
         });
     }
@@ -200,8 +205,8 @@ public class TetrisView implements Observateur{
                         System.out.println("left");
                         controlleur.clickLeft(tetris.getMesPieces().firstElement());
                         break;
-                    case SPACE:
-                        System.out.println("space");
+                    case UP:
+                        System.out.println("up");
                         controlleur.clickEspace(tetris.getMesPieces().firstElement());
                         break;
                 }
@@ -240,6 +245,10 @@ public class TetrisView implements Observateur{
     public void startGame(){
 
         controlleur.startGame();
+    }
+
+    public void stopGame() {
+        arreterMusique();
     }
 
     @Override
