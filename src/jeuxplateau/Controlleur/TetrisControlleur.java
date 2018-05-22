@@ -156,11 +156,12 @@ public class TetrisControlleur {
                     positionDansGrilleI=getPositionDansGrilleI(piece,i);
                     positionDansGrilleJ=getPositionDansGrilleJ(piece,j);
                     if((positionDansGrilleI+1)>=height){
+                        monTetris.setNbPiecesPosees(monTetris.getNbPiecesPosees() + 1);
+                        changerNiveau();
                         return false;
                     }
                     if(positionDansGrilleI>=0){
                         if(!maGrille.getCase(positionDansGrilleI+1,positionDansGrilleJ).isIsEmpty()){
-
                             monTetris.setNbPiecesPosees(monTetris.getNbPiecesPosees() + 1);
                             changerNiveau();
                             return false;
