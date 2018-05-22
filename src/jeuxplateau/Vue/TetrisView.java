@@ -1,10 +1,9 @@
 package jeuxplateau.Vue;
 
-import javafx.application.Platform;
+import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -15,13 +14,12 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import jeuxplateau.Controlleur.TetrisControlleur;
-import jeuxplateau.Modele.Case;
 import jeuxplateau.Modele.Piece;
 import jeuxplateau.Modele.Tetris;
 
 import java.io.File;
-import java.util.List;
 
 public class TetrisView implements Observateur{
 
@@ -212,6 +210,14 @@ public class TetrisView implements Observateur{
                 }
             }
         });
+
+        PauseTransition wait = new PauseTransition(Duration.seconds(1));
+        wait.setOnFinished((e) -> {
+        /*YOUR METHOD*/
+            controlleur.clickDown(tetris.getMesPieces().firstElement());
+            wait.playFromStart();
+        });
+        wait.play();
     }
 
     private void paintPiece() {
@@ -242,7 +248,7 @@ public class TetrisView implements Observateur{
         }
     }
 
-    public void startGame(){
+    public void startGame() {
 
         controlleur.startGame();
     }
