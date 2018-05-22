@@ -1,9 +1,11 @@
 package jeuxplateau.Vue;
 
 import javafx.animation.PauseTransition;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -28,6 +30,7 @@ public class TetrisView implements Observateur{
     private Group root;
     private GridPane grille;
     private MenuView menuView;
+    private GridPane lbGrid;
 
     private static int HAUTEUR_GRILLE = 20;
     private static int LARGEUR_GRILLE = 10;
@@ -166,7 +169,7 @@ public class TetrisView implements Observateur{
 
     private void initLabels() {
         // GridPane des labels Score, Niveau et Lignes
-        GridPane lbGrid = new GridPane();
+        lbGrid = new GridPane();
         lbGrid.setTranslateX(300);
         lbGrid.setTranslateY(175);
         Label lbScore = new Label("Score : ");
@@ -183,6 +186,23 @@ public class TetrisView implements Observateur{
         lbGrid.add(niveau, 1, 2);
 
         this.root.getChildren().add(lbGrid);
+    }
+
+    private void updateLabels() {
+        lbGrid.getChildren().clear();
+        Label lbScore = new Label("Score : ");
+        Label lbNiveau = new Label("Niveau : ");
+        Label lbLignes = new Label("Lignes : ");
+        Label score = new Label(Integer.toString(tetris.getScore()));
+        Label niveau = new Label(Integer.toString(tetris.getNiveau()));
+        Label lignes = new Label(Integer.toString(tetris.getLignes()));
+        lbGrid.add(lbScore, 0, 0);
+        lbGrid.add(lbLignes, 0, 1);
+        lbGrid.add(lbNiveau, 0, 2);
+        lbGrid.add(score, 1, 0);
+        lbGrid.add(lignes, 1, 1);
+        lbGrid.add(niveau, 1, 2);
+
     }
 
     private void initClavier() {
@@ -262,6 +282,7 @@ public class TetrisView implements Observateur{
         initGrille();
         initZoneProchainePiece();
         paintPiece();
+        updateLabels();
         System.out.println(tetris.getMesPieces().firstElement().getPositionX());
         System.out.println(tetris.getMesPieces().firstElement().getPositionY());
     }

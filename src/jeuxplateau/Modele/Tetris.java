@@ -17,7 +17,15 @@ import java.util.Vector;
 public class Tetris extends Jeu {
     private int niveau = 0;
     private int lignes = 0;
+    private int nbPiecesPosees = 0;
 
+    public int getNbPiecesPosees() {
+        return nbPiecesPosees;
+    }
+
+    public void setNbPiecesPosees(int nbPiecesPosees) {
+        this.nbPiecesPosees = nbPiecesPosees;
+    }
 
     public int getLignes() {
         return lignes;
