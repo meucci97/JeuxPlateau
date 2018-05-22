@@ -7,15 +7,20 @@ import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Border;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Text;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import jeuxplateau.Controlleur.TetrisControlleur;
@@ -23,6 +28,7 @@ import jeuxplateau.Modele.Piece;
 import jeuxplateau.Modele.Tetris;
 
 import java.io.File;
+import java.util.Optional;
 
 public class TetrisView implements Observateur {
 
@@ -74,7 +80,6 @@ public class TetrisView implements Observateur {
 
     private void initialiserMusique() {
         String musicFile = "tetris.mp3";
-
         Media sound = new Media(new File(musicFile).toURI().toString());
         mediaPlayer = new MediaPlayer(sound);
         mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
@@ -307,7 +312,34 @@ public class TetrisView implements Observateur {
     @Override
     public void update() {
         if(tetris.getGameOver()){
+            wait.stop();
             System.out.println("Game over");
+
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("GAME OVER ");
+            alert.setHeaderText("Voulez vous recommencer?");
+            alert.setContentText("Votre score est de: "+ tetris.getScore());
+
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == ButtonType.OK){
+                this.tetris=new Tetris(LARGEUR_GRILLE,HAUTEUR_GRILLE);
+                this.tetris.addObservateur(this);
+                this.controlleur.setMonTetris(tetris);
+                controlleur.startGame();
+                updteGrille();
+                initTimer();
+                initZoneProchainePiece();
+                paintPiece();
+                updateLabels();
+                System.out.println(tetris.getMesPieces().size());
+            } else {
+                System.out.println("Quitter");
+                menuView = new MenuView(primaryStage);
+                stopGame();
+                System.out.println("Menu");
+            }
+
+
         }else{
             updteGrille();
             updateTimer();

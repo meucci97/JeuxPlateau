@@ -44,19 +44,22 @@ public class TetrisControlleur {
     public void clickDown(Piece piece){
         if(clickDownCheck(piece)){
             this.monTetris.getMesPieces().firstElement().setPositionX(this.monTetris.getMesPieces().firstElement().getPositionX()+1);
+
             monTetris.notifyObsevateur();
         }else{
             // controle pour suppr les lignes
             // SI toutes cases d'une ligne complete -> suppression
             // Descendre les cases du dessus
             // scoring
+            changerScorePiece();
             setNewGrilleValue(piece);
             monTetris.removeFirstPiece();
             monTetris.genererPieces();
-            lineCheck();
-            changerScoreLignes();
+
+            changerScoreLignes(lineCheck());
             if(checkGameOver()){
                 monTetris.setIsGameOver();
+                monTetris.removeFirstPiece();
             }else{
                 monTetris.getMesPieces().firstElement().setPositionX(-3);
                 monTetris.getMesPieces().firstElement().setPositionY(5);
@@ -159,7 +162,7 @@ public class TetrisControlleur {
                     }
                     if(positionDansGrilleI>=0){
                         if(!maGrille.getCase(positionDansGrilleI+1,positionDansGrilleJ).isIsEmpty()){
-                            changerScorePiece();
+
                             monTetris.setNbPiecesPosees(monTetris.getNbPiecesPosees() + 1);
                             changerNiveau();
                             return false;
@@ -254,13 +257,14 @@ public class TetrisControlleur {
         monTetris.setScore(monTetris.getScore() + 10*(monTetris.getNiveau() + 1));
     }
 
-    public void changerScoreLignes() {
+    public void changerScoreLignes(int nbLignes) {
 
         int levelIncrement = monTetris.getNiveau() + 1;
-        int nbLignes = lineCheck();
         int ancienScore = monTetris.getScore();
 
         switch (nbLignes) {
+            case 0:
+                break;
             case 1:
                 monTetris.setScore(ancienScore + (50 * levelIncrement));
                 break;
