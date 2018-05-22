@@ -47,6 +47,7 @@ public class TetrisControlleur {
                 setNewGrilleValue(piece);
                 monTetris.removeFirstPiece();
                 monTetris.genererPieces();
+                lineCheck();
                 monTetris.getMesPieces().firstElement().setPositionX(-3);
                 monTetris.getMesPieces().firstElement().setPositionY(5);
             }
@@ -59,9 +60,10 @@ public class TetrisControlleur {
             setNewGrilleValue(piece);
             monTetris.removeFirstPiece();
             monTetris.genererPieces();
+            lineCheck();
             monTetris.getMesPieces().firstElement().setPositionX(-3);
             monTetris.getMesPieces().firstElement().setPositionY(5);
-
+            monTetris.notifyObsevateur();
         }
 
     }
@@ -82,7 +84,6 @@ public class TetrisControlleur {
                 }
             }
         }
-
     }
     public void clickEspace(Piece piece){
         if(pivotCheck(piece)){
@@ -220,9 +221,26 @@ public class TetrisControlleur {
         return true;
     }
 
-    public boolean lineCheck(){
-        //
-        return true;
+    public int lineCheck(){
+        int nbLigne=0;
+        int width=monTetris.getGrille().getWidth();
+        int height=monTetris.getGrille().getHeight();
+        for(int i=(height-1); i>=0;i--){
+            for(int j=0; j<width;j++){
+                if(monTetris.getGrille().getCase(i,j).getIntOccupe()==0){
+                    break;
+                }
+                if(j==(width-1)){
+                    nbLigne++;
+                   for(int k=0;k<width;k++){
+                       monTetris.getGrille().removeLast(i,k);
+                       monTetris.getGrille().addNewCaseFirstRow(i);
+                   }
+                   j--;
+                }
+            }
+        }
+        return 0;
     }
 
     public boolean checkClearedBoard() {
