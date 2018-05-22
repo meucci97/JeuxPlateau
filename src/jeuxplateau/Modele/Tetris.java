@@ -56,6 +56,7 @@ public class Tetris extends Jeu {
         genererJoueur("J1");
         genererPieces();
     }
+
     public Grille getGrille(){
         return super.maGrille;
     }
@@ -67,10 +68,18 @@ public class Tetris extends Jeu {
     public void removeFirstPiece(){
         super.mesPieces.removeElementAt(0);
     }
+
     public Vector<Joueur> getMesJoueurs(){
         return super.mesJoueurs;
     }
 
+    public void setIsGameOver(){
+        super.isDone=true;
+    }
+
+    public boolean getGameOver(){
+        return super.isDone;
+    }
 
     @Override
     public void genererPieces() {

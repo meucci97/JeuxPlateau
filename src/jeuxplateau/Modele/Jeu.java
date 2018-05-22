@@ -19,6 +19,7 @@ public abstract class Jeu implements Observable{
        protected Vector<Piece> mesPieces;
        protected boolean isDone;
        protected int score;
+
        protected Vector<Observateur> monObservateur;
        protected abstract void genererPieces();
        protected abstract void genererJoueur(String idJoueur);

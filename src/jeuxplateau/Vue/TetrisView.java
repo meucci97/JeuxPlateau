@@ -296,20 +296,25 @@ public class TetrisView implements Observateur {
     }
 
     public void startGame() {
-
         controlleur.startGame();
     }
 
     public void stopGame() {
+        wait.stop();
         arreterMusique();
     }
 
     @Override
     public void update() {
-        updteGrille();
-        updateTimer();
-        initZoneProchainePiece();
-        paintPiece();
-        updateLabels();
+        if(tetris.getGameOver()){
+            System.out.println("Game over");
+        }else{
+            updteGrille();
+            updateTimer();
+            initZoneProchainePiece();
+            paintPiece();
+            updateLabels();
+        }
+
     }
 }

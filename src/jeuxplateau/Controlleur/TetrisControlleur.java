@@ -55,8 +55,13 @@ public class TetrisControlleur {
             monTetris.genererPieces();
             lineCheck();
             changerScoreLignes();
-            monTetris.getMesPieces().firstElement().setPositionX(-3);
-            monTetris.getMesPieces().firstElement().setPositionY(5);
+            if(checkGameOver()){
+                monTetris.setIsGameOver();
+            }else{
+                monTetris.getMesPieces().firstElement().setPositionX(-3);
+                monTetris.getMesPieces().firstElement().setPositionY(5);
+            }
+
             monTetris.notifyObsevateur();
         }
 
@@ -79,6 +84,7 @@ public class TetrisControlleur {
             }
         }
     }
+
     public void clickEspace(Piece piece){
         if(pivotCheck(piece)){
             this.monTetris.getMesPieces().firstElement().pivoter();
@@ -269,4 +275,9 @@ public class TetrisControlleur {
                 break;
         }
     }
+
+    public boolean checkGameOver(){
+        return (!monTetris.getGrille().getCase(0,5).isIsEmpty());
+    }
+
 }
