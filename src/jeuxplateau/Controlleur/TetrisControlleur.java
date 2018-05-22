@@ -49,6 +49,7 @@ public class TetrisControlleur {
                 monTetris.removeFirstPiece();
                 monTetris.genererPieces();
                 lineCheck();
+                changerScoreLignes();
                 monTetris.getMesPieces().firstElement().setPositionX(-3);
                 monTetris.getMesPieces().firstElement().setPositionY(5);
             }
@@ -62,6 +63,7 @@ public class TetrisControlleur {
             monTetris.removeFirstPiece();
             monTetris.genererPieces();
             lineCheck();
+            changerScoreLignes();
             monTetris.getMesPieces().firstElement().setPositionX(-3);
             monTetris.getMesPieces().firstElement().setPositionY(5);
             monTetris.notifyObsevateur();
@@ -160,7 +162,10 @@ public class TetrisControlleur {
                     }
                     if(positionDansGrilleI>=0){
                         if(!maGrille.getCase(positionDansGrilleI+1,positionDansGrilleJ).isIsEmpty()){
-                           return false;
+                            changerScorePiece();
+                            monTetris.setNbPiecesPosees(monTetris.getNbPiecesPosees() + 1);
+                            changerNiveau();
+                            return false;
                         }
                     }
 
@@ -242,19 +247,35 @@ public class TetrisControlleur {
         return nbLigne;
     }
 
-    public boolean checkClearedBoard() {
-        return false;
+    public void changerNiveau() {
+        if(monTetris.getNbPiecesPosees() % 10 == 0) {
+            monTetris.setNiveau(monTetris.getNiveau() + 1);
+        }
     }
 
-    public boolean checkPiecePosee() {
-        return false;
+    public void changerScorePiece() {
+        monTetris.setScore(monTetris.getScore() + 10*(monTetris.getNiveau() + 1));
     }
 
-    public int nbLignesEffacees() {
-        return 0;
-    }
+    public void changerScoreLignes() {
 
-    public void changeScore() {
-        monTetris.setScore(10 * (monTetris.getNiveau() + 1));
+        int levelIncrement = monTetris.getNiveau() + 1;
+        int nbLignes = lineCheck();
+        int ancienScore = monTetris.getScore();
+
+        switch (nbLignes) {
+            case 1:
+                monTetris.setScore(ancienScore + (50 * levelIncrement));
+                break;
+            case 2:
+                monTetris.setScore(ancienScore + (150 * levelIncrement));
+                break;
+            case 3:
+                monTetris.setScore(ancienScore + (350 * levelIncrement));
+                break;
+            case 4:
+                monTetris.setScore(ancienScore + (1000 * levelIncrement));
+                break;
+        }
     }
 }
