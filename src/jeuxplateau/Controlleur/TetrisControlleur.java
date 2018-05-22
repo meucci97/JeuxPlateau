@@ -239,7 +239,7 @@ public class TetrisControlleur {
                 }
             }
         }
-        return 0;
+        return nbLigne;
     }
 
     public boolean checkClearedBoard() {
