@@ -241,7 +241,6 @@ public class TetrisControlleur {
     public void changerNiveau() {
         if(monTetris.getNbPiecesPosees() % 10 == 0) {
             monTetris.setNiveau(monTetris.getNiveau() + 1);
-            changerVitesse();
         }
     }
 
@@ -269,9 +268,5 @@ public class TetrisControlleur {
                 monTetris.setScore(ancienScore + (1000 * levelIncrement));
                 break;
         }
-    }
-
-    public void changerVitesse() {
-        monTetris.setVitesse(monTetris.getVitesse() / 5);
     }
 }

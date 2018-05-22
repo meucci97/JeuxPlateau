@@ -18,15 +18,6 @@ public class Tetris extends Jeu {
     private int niveau = 0;
     private int lignes = 0;
     private int nbPiecesPosees = 0;
-    private int vitesse = 1;
-
-    public int getVitesse() {
-        return vitesse;
-    }
-
-    public void setVitesse(int vitesse) {
-        this.vitesse = vitesse;
-    }
 
     public int getNbPiecesPosees() {
         return nbPiecesPosees;

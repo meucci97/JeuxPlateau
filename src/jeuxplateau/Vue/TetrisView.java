@@ -40,11 +40,11 @@ public class TetrisView implements Observateur {
     private static int LARGEUR_FENETRE = 425;
 
     private MediaPlayer mediaPlayer;
-    private PauseTransition wait;
 
     private Tetris tetris;
     private TetrisControlleur controlleur;
 
+    PauseTransition wait;
     public TetrisView(Stage primaryStage, Tetris tetris) {
         this.primaryStage = primaryStage;
         this.root = new Group();
@@ -59,11 +59,11 @@ public class TetrisView implements Observateur {
         lancerMusique();
         initZoneProchainePiece();
         initGrille();
-        initTimer();
 
         initBouttons();
         initLabels();
         paintPiece();
+        initTimer();
         this.plateauxTetris = new Scene(root, LARGEUR_FENETRE, HAUTEUR_FENTRE);
 
         initClavier();
@@ -251,14 +251,17 @@ public class TetrisView implements Observateur {
     }
 
     public void initTimer() {
-        wait = new PauseTransition(Duration.seconds(tetris.getVitesse()));
-        wait.setOnFinished((e) -> {
+         wait= new PauseTransition(Duration.seconds(1-((tetris.getNiveau()+1)/10)));
+         wait.setOnFinished((e) -> {
             controlleur.clickDown(tetris.getMesPieces().firstElement());
             wait.playFromStart();
         });
         wait.play();
     }
 
+    public void updateTimer() {
+        wait.setDuration((Duration.seconds(1-((tetris.getNiveau()+1)/10))));
+    }
 
     private void paintPiece() {
         for(int i=0;i<4;i++){
@@ -301,11 +304,10 @@ public class TetrisView implements Observateur {
         arreterMusique();
     }
 
-
     @Override
     public void update() {
         updteGrille();
-        initTimer();
+        updateTimer();
         initZoneProchainePiece();
         paintPiece();
         updateLabels();
