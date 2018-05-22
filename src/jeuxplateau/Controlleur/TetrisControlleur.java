@@ -52,9 +52,11 @@ public class TetrisControlleur {
             monTetris.removeFirstPiece();
             monTetris.genererPieces();
 
-            changerScoreLignes(lineCheck());
-            changerLignes(lineCheck());
-            System.out.println("lineCheck : " + lineCheck());
+            int nbLignes = lineCheck();
+
+            changerScoreLignes(nbLignes);
+            changerLignes(nbLignes);
+
             if(checkGameOver()){
                 monTetris.setIsGameOver();
                 monTetris.removeFirstPiece();
