@@ -62,7 +62,7 @@ public class TetrisView implements Observateur {
     public void initialisationAll() {
         // Lancement de la musique de fond
         initialiserMusique();
-        lancerMusique();
+        //lancerMusique();
         initZoneProchainePiece();
         initGrille();
 

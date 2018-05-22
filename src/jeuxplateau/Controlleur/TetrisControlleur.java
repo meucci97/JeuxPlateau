@@ -47,16 +47,14 @@ public class TetrisControlleur {
 
             monTetris.notifyObsevateur();
         }else{
-            // controle pour suppr les lignes
-            // SI toutes cases d'une ligne complete -> suppression
-            // Descendre les cases du dessus
-            // scoring
             changerScorePiece();
             setNewGrilleValue(piece);
             monTetris.removeFirstPiece();
             monTetris.genererPieces();
 
             changerScoreLignes(lineCheck());
+            changerLignes(lineCheck());
+            System.out.println("lineCheck : " + lineCheck());
             if(checkGameOver()){
                 monTetris.setIsGameOver();
                 monTetris.removeFirstPiece();
@@ -278,6 +276,10 @@ public class TetrisControlleur {
                 monTetris.setScore(ancienScore + (1000 * levelIncrement));
                 break;
         }
+    }
+
+    public void changerLignes(int nbLignes) {
+        monTetris.setLignes(monTetris.getLignes() + nbLignes);
     }
 
     public boolean checkGameOver(){
