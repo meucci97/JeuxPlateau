@@ -44,15 +44,6 @@ public class TetrisControlleur {
     public void clickDown(Piece piece){
         if(clickDownCheck(piece)){
             this.monTetris.getMesPieces().firstElement().setPositionX(this.monTetris.getMesPieces().firstElement().getPositionX()+1);
-            if(!clickDownCheck(piece)){
-                setNewGrilleValue(piece);
-                monTetris.removeFirstPiece();
-                monTetris.genererPieces();
-                lineCheck();
-                changerScoreLignes();
-                monTetris.getMesPieces().firstElement().setPositionX(-3);
-                monTetris.getMesPieces().firstElement().setPositionY(5);
-            }
             monTetris.notifyObsevateur();
         }else{
             // controle pour suppr les lignes
