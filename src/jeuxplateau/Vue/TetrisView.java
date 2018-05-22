@@ -7,17 +7,14 @@ import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.Border;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
@@ -30,8 +27,10 @@ import jeuxplateau.Modele.Tetris;
 import java.io.File;
 import java.util.Optional;
 
-public class TetrisView implements Observateur {
+import static javafx.scene.paint.Color.BLACK;
 
+public class TetrisView implements Observateur {
+    private TetrisView vuTetris = this;
     private Stage primaryStage;
     private Scene plateauxTetris;
     private Group root;
@@ -51,6 +50,7 @@ public class TetrisView implements Observateur {
     private TetrisControlleur controlleur;
 
     PauseTransition wait;
+
     public TetrisView(Stage primaryStage, Tetris tetris) {
         this.primaryStage = primaryStage;
         this.root = new Group();
@@ -60,6 +60,12 @@ public class TetrisView implements Observateur {
     }
 
     public void initialisationAll() {
+       /* BackgroundImage myBI= new BackgroundImage(new Image("file:background2.jpg"),
+                BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.DEFAULT,
+                BackgroundSize.DEFAULT);
+*/
+        //root.setBackground(new Background(myBI));
+
         // Lancement de la musique de fond
         initialiserMusique();
         //lancerMusique();
@@ -70,8 +76,8 @@ public class TetrisView implements Observateur {
         initLabels();
         paintPiece();
         initTimer();
-        this.plateauxTetris = new Scene(root, LARGEUR_FENETRE, HAUTEUR_FENTRE);
 
+        this.plateauxTetris = new Scene(root, LARGEUR_FENETRE, HAUTEUR_FENTRE, Color.web("#323232"));
         initClavier();
 
         primaryStage.setScene(plateauxTetris);
@@ -110,7 +116,7 @@ public class TetrisView implements Observateur {
                 rec.setHeight(15);
 
                 if (piece.getMatricePiece()[ligne][colonne] == 0) {
-                    rec.setFill(Color.BLACK);
+                    rec.setFill(BLACK);
                 } else {
                     rec.setFill(Color.web(piece.getCouleur()));
                 }
@@ -138,14 +144,14 @@ public class TetrisView implements Observateur {
                 grille.add(rec, colonne, ligne);
             }
         }
-        for(int i=0; i<4;i++){
+        for (int i = 0; i < 4; i++) {
             Rectangle rec = new Rectangle();
             rec.setWidth(25);
             rec.setHeight(25);
             rec.setOpacity(0);
             rec.setStroke(Color.GRAY);
             rec.setId("P" + i);
-            grille.add(rec,0,0);
+            grille.add(rec, 0, 0);
         }
         this.root.getChildren().add(grille);
     }
@@ -165,8 +171,10 @@ public class TetrisView implements Observateur {
         btnGrid.setTranslateY(250);
         btnGrid.setHgap(10);
         Button btnQuitter = new Button("Quitter");
-        Button btnPause = new Button("Pause");
-        btnGrid.add(btnPause, 0, 0);
+        //Button btnPause = new Button("Pause");
+        Button btnReset = new Button("Reset");
+        //btnGrid.add(btnPause, 0, 0);
+        btnGrid.add(btnReset, 0, 0);
         btnGrid.add(btnQuitter, 1, 0);
 
         this.root.getChildren().add(btnGrid);
@@ -181,11 +189,29 @@ public class TetrisView implements Observateur {
             }
         });
 
-        btnPause.setOnAction(new EventHandler<ActionEvent>() {
+/*        btnPause.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 System.out.println("Pause");
                 muteMusique();
+            }
+        });
+        */
+        btnReset.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                System.out.println("Reset");
+                tetris = new Tetris(LARGEUR_GRILLE, HAUTEUR_GRILLE);
+                tetris.addObservateur(vuTetris);
+                controlleur.setMonTetris(tetris);
+                controlleur.startGame();
+                updteGrille();
+                initTimer();
+                initZoneProchainePiece();
+                paintPiece();
+                updateLabels();
+                System.out.println(tetris.getMesPieces().size());
+                initClavier();
             }
         });
     }
@@ -196,18 +222,24 @@ public class TetrisView implements Observateur {
         lbGrid.setTranslateX(300);
         lbGrid.setTranslateY(175);
         Label lbScore = new Label("Score : ");
+        lbScore.setTextFill(Color.web("#cd853f"));
         Label lbNiveau = new Label("Niveau : ");
+        lbNiveau.setTextFill(Color.web("#cd853f"));
         Label lbLignes = new Label("Lignes : ");
+        lbLignes.setTextFill(Color.web("#cd853f"));
+
         Label score = new Label(Integer.toString(tetris.getScore()));
+        score.setTextFill(Color.web("#cd853f"));
         Label niveau = new Label(Integer.toString(tetris.getNiveau()));
+        niveau.setTextFill(Color.web("#cd853f"));
         Label lignes = new Label(Integer.toString(tetris.getLignes()));
+        lignes.setTextFill(Color.web("#cd853f"));
         lbGrid.add(lbScore, 0, 0);
         lbGrid.add(lbLignes, 0, 1);
         lbGrid.add(lbNiveau, 0, 2);
         lbGrid.add(score, 1, 0);
         lbGrid.add(lignes, 1, 1);
         lbGrid.add(niveau, 1, 2);
-
         this.root.getChildren().add(lbGrid);
     }
 
@@ -219,6 +251,14 @@ public class TetrisView implements Observateur {
         Label score = new Label(Integer.toString(tetris.getScore()));
         Label niveau = new Label(Integer.toString(tetris.getNiveau()));
         Label lignes = new Label(Integer.toString(tetris.getLignes()));
+
+        lbScore.setTextFill(Color.web("#cd853f"));
+        lbNiveau.setTextFill(Color.web("#cd853f"));
+        lbLignes.setTextFill(Color.web("#cd853f"));
+        score.setTextFill(Color.web("#cd853f"));
+        niveau.setTextFill(Color.web("#cd853f"));
+        lignes.setTextFill(Color.web("#cd853f"));
+
         lbGrid.add(lbScore, 0, 0);
         lbGrid.add(lbLignes, 0, 1);
         lbGrid.add(lbNiveau, 0, 2);
@@ -256,8 +296,8 @@ public class TetrisView implements Observateur {
     }
 
     public void initTimer() {
-         wait= new PauseTransition(Duration.seconds(1-((tetris.getNiveau()+1)/10)));
-         wait.setOnFinished((e) -> {
+        wait = new PauseTransition(Duration.seconds(1 - ((tetris.getNiveau() + 1) / 10)));
+        wait.setOnFinished((e) -> {
             controlleur.clickDown(tetris.getMesPieces().firstElement());
             wait.playFromStart();
         });
@@ -265,34 +305,34 @@ public class TetrisView implements Observateur {
     }
 
     public void updateTimer() {
-        wait.setDuration((Duration.seconds(1-((tetris.getNiveau()+1)/10))));
+        wait.setDuration((Duration.seconds(1 - ((tetris.getNiveau() + 1) / 10))));
     }
 
     private void paintPiece() {
-        for(int i=0;i<4;i++){
-            this.grille.getChildren().remove(grille.lookup("#P"+i));
+        for (int i = 0; i < 4; i++) {
+            this.grille.getChildren().remove(grille.lookup("#P" + i));
         }
 
-        int idCasePiece=0;
+        int idCasePiece = 0;
         Piece piece = tetris.getMesPieces().firstElement();
         int[][] matrice = piece.getMatricePiece();
         int positionDansGrilleI = 0;
         int positionDansGrilleJ = 0;
         for (int i = 0; i < matrice.length; i++) {
             for (int j = 0; j < matrice[i].length; j++) {
-                if(matrice[i][j]!=0) {
-                    positionDansGrilleI=controlleur.getPositionDansGrilleI(piece,i);
-                    positionDansGrilleJ=controlleur.getPositionDansGrilleJ(piece,j);
+                if (matrice[i][j] != 0) {
+                    positionDansGrilleI = controlleur.getPositionDansGrilleI(piece, i);
+                    positionDansGrilleJ = controlleur.getPositionDansGrilleJ(piece, j);
 
-                    if (positionDansGrilleI >= 0 && positionDansGrilleJ>=0) {
+                    if (positionDansGrilleI >= 0 && positionDansGrilleJ >= 0) {
                         Rectangle rec = new Rectangle();
                         rec.setWidth(25);
                         rec.setHeight(25);
                         rec.setFill(Color.web(piece.getCouleur()));
                         rec.setStroke(Color.GRAY);
-                        rec.setId("P"+idCasePiece);
+                        rec.setId("P" + idCasePiece);
                         idCasePiece++;
-                        grille.add(rec,positionDansGrilleJ,positionDansGrilleI);
+                        grille.add(rec, positionDansGrilleJ, positionDansGrilleI);
                     }
                 }
             }
@@ -311,18 +351,18 @@ public class TetrisView implements Observateur {
 
     @Override
     public void update() {
-        if(tetris.getGameOver()){
+        if (tetris.getGameOver()) {
             wait.stop();
             System.out.println("Game over");
 
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("GAME OVER ");
             alert.setHeaderText("Voulez vous recommencer?");
-            alert.setContentText("Votre score est de: "+ tetris.getScore());
+            alert.setContentText("Votre score est de: " + tetris.getScore());
 
             Optional<ButtonType> result = alert.showAndWait();
-            if (result.get() == ButtonType.OK){
-                this.tetris=new Tetris(LARGEUR_GRILLE,HAUTEUR_GRILLE);
+            if (result.get() == ButtonType.OK) {
+                this.tetris = new Tetris(LARGEUR_GRILLE, HAUTEUR_GRILLE);
                 this.tetris.addObservateur(this);
                 this.controlleur.setMonTetris(tetris);
                 controlleur.startGame();
@@ -340,7 +380,7 @@ public class TetrisView implements Observateur {
             }
 
 
-        }else{
+        } else {
             updteGrille();
             updateTimer();
             initZoneProchainePiece();
