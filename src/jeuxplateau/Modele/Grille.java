@@ -63,10 +63,14 @@ public class Grille {
         return height;
     }
 
-    public void removeLast(int i,int j){
-        tableau.get(i).remove(j);
+    public void removeLine(int i){
+        tableau.remove(i);
     }
-    public void addNewCaseFirstRow(int i){
-        tableau.get(i).add(0, (new Case()));
+    public void addNFirstRow(int i){
+        Vector<Case> newRow=new Vector<>();
+        for(int j=0;j<getWidth();j++){
+            newRow.add(new Case());
+        }
+        tableau.add(0,newRow);
     }
 }

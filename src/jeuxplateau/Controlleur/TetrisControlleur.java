@@ -233,11 +233,9 @@ public class TetrisControlleur {
                 }
                 if(j==(width-1)){
                     nbLigne++;
-                   for(int k=0;k<width;k++){
-                       monTetris.getGrille().removeLast(i,k);
-                       monTetris.getGrille().addNewCaseFirstRow(i);
-                   }
-                   j--;
+                    monTetris.getGrille().removeLine(i);
+                    monTetris.getGrille().addNFirstRow(i);
+                   i++;
                 }
             }
         }
