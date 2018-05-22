@@ -39,6 +39,7 @@ public class TetrisView implements Observateur{
     private static int LARGEUR_FENETRE = 425;
 
     private MediaPlayer mediaPlayer;
+    private PauseTransition wait;
 
     private Tetris tetris;
     private TetrisControlleur controlleur;
@@ -230,10 +231,11 @@ public class TetrisView implements Observateur{
                 }
             }
         });
+    }
 
-        PauseTransition wait = new PauseTransition(Duration.seconds(1));
+    public void initTimer() {
+        wait = new PauseTransition(Duration.seconds(tetris.getVitesse()));
         wait.setOnFinished((e) -> {
-        /*YOUR METHOD*/
             controlleur.clickDown(tetris.getMesPieces().firstElement());
             wait.playFromStart();
         });
