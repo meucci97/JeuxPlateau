@@ -295,7 +295,7 @@ public class TetrisView implements Observateur {
     }
 
     public void initTimer() {
-        wait = new PauseTransition(Duration.seconds(1 - ((tetris.getNiveau() + 1) / 10)));
+        wait = new PauseTransition(Duration.millis(1000/(tetris.getNiveau() + 1)));
         wait.setOnFinished((e) -> {
             controlleur.clickDown(tetris.getMesPieces().firstElement());
             wait.playFromStart();
@@ -304,7 +304,7 @@ public class TetrisView implements Observateur {
     }
 
     public void updateTimer() {
-        wait.setDuration((Duration.seconds(1 - ((tetris.getNiveau() + 1) / 10))));
+        wait.setDuration( new Duration(1000/(tetris.getNiveau() + 1)));
     }
 
     private void paintPiece() {
