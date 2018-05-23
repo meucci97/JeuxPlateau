@@ -67,7 +67,7 @@ public class TetrisView implements Observateur {
         motherRoot.setBackground(new Background(myBI));
         // Lancement de la musique de fond
         initialiserMusique();
-        //lancerMusique();
+        lancerMusique();
         initZoneProchainePiece();
         initGrille();
 
