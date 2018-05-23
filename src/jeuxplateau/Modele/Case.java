@@ -10,6 +10,7 @@ package jeuxplateau.Modele;
  * @author Stefano
  */
 public class Case {
+
     private boolean isEmpty;
     private Piece piece;
     private int intOccupe;
@@ -53,6 +54,7 @@ public class Case {
         intOccupe=1;
         couleur = p.getCouleur();
     }
+
     public Case() {
         isEmpty=true;
         piece= null;

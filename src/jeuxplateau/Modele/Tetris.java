@@ -15,6 +15,7 @@ import java.util.Vector;
  * @author Stefano
  */
 public class Tetris extends Jeu {
+
     private int niveau = 0;
     private int lignes = 0;
     private int nbPiecesPosees = 0;

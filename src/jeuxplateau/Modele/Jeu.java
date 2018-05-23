@@ -14,6 +14,7 @@ import java.util.Vector;
  * @author Stefano
  */
 public abstract class Jeu implements Observable{
+
        protected Grille maGrille;
        protected Vector<Joueur> mesJoueurs;
        protected Vector<Piece> mesPieces;

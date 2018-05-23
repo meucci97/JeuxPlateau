@@ -1,11 +1,9 @@
 package jeuxplateau.Vue;
 
 import javafx.animation.PauseTransition;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
@@ -14,10 +12,7 @@ import javafx.scene.layout.*;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.text.Text;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import jeuxplateau.Controlleur.TetrisControlleur;
@@ -39,18 +34,18 @@ public class TetrisView implements Observateur {
     private MenuView menuView;
     private GridPane lbGrid;
 
-    private static int HAUTEUR_GRILLE = 20;
-    private static int LARGEUR_GRILLE = 10;
-
-    private static int HAUTEUR_FENTRE = 525;
-    private static int LARGEUR_FENETRE = 425;
+    private final static int HAUTEUR_GRILLE = 20;
+    private final static int LARGEUR_GRILLE = 10;
+    private final static int TIMER=1000;
+    private final static int HAUTEUR_FENTRE = 525;
+    private final static int LARGEUR_FENETRE = 425;
 
     private MediaPlayer mediaPlayer;
 
     private Tetris tetris;
     private TetrisControlleur controlleur;
 
-    PauseTransition wait;
+    private PauseTransition wait;
 
     public TetrisView(Stage primaryStage, Tetris tetris) {
         this.primaryStage = primaryStage;
@@ -60,21 +55,27 @@ public class TetrisView implements Observateur {
         controlleur = new TetrisControlleur(tetris);
     }
 
+    public void setTetris(Tetris tetris){
+        this.tetris=tetris;
+    }
+
     public void initialisationAll() {
+
         BackgroundImage myBI= new BackgroundImage(new Image("file:background2.jpg"),
                 BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.DEFAULT,
                 BackgroundSize.DEFAULT);
+
         motherRoot.setBackground(new Background(myBI));
         // Lancement de la musique de fond
         initialiserMusique();
         lancerMusique();
         initZoneProchainePiece();
         initGrille();
-
         initBouttons();
         initLabels();
         paintPiece();
         initTimer();
+
         this.motherRoot.getChildren().add(root);
         this.plateauxTetris = new Scene(motherRoot, LARGEUR_FENETRE, HAUTEUR_FENTRE/*, Color.web("#323232")*/);
         initClavier();
@@ -164,15 +165,14 @@ public class TetrisView implements Observateur {
     }
 
     private void initBouttons() {
+
         // GridPane des bouttons Pause et Quitter
         GridPane btnGrid = new GridPane();
         btnGrid.setTranslateX(280);
         btnGrid.setTranslateY(250);
         btnGrid.setHgap(10);
         Button btnQuitter = new Button("Quitter");
-        //Button btnPause = new Button("Pause");
         Button btnReset = new Button("Reset");
-        //btnGrid.add(btnPause, 0, 0);
         btnGrid.add(btnReset, 0, 0);
         btnGrid.add(btnQuitter, 1, 0);
 
@@ -188,22 +188,11 @@ public class TetrisView implements Observateur {
             }
         });
 
-/*        btnPause.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                System.out.println("Pause");
-                muteMusique();
-            }
-        });
-        */
         btnReset.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 System.out.println("Reset");
-                tetris = new Tetris(LARGEUR_GRILLE, HAUTEUR_GRILLE);
-                tetris.addObservateur(vuTetris);
-                controlleur.setMonTetris(tetris);
-                controlleur.startGame();
+                controlleur.resetGame(LARGEUR_GRILLE,HAUTEUR_GRILLE, vuTetris);
                 updteGrille();
                 initTimer();
                 initZoneProchainePiece();
@@ -287,7 +276,7 @@ public class TetrisView implements Observateur {
                         break;
                     case UP:
                         System.out.println("up");
-                        controlleur.clickEspace(tetris.getMesPieces().firstElement());
+                        controlleur.clickUp(tetris.getMesPieces().firstElement());
                         break;
                 }
             }
@@ -295,7 +284,7 @@ public class TetrisView implements Observateur {
     }
 
     public void initTimer() {
-        wait = new PauseTransition(Duration.millis(1000/(tetris.getNiveau() + 1)));
+        wait = new PauseTransition(Duration.millis(TIMER/(tetris.getNiveau() + 1)));
         wait.setOnFinished((e) -> {
             controlleur.clickDown(tetris.getMesPieces().firstElement());
             wait.playFromStart();
@@ -304,7 +293,7 @@ public class TetrisView implements Observateur {
     }
 
     public void updateTimer() {
-        wait.setDuration( new Duration(1000/(tetris.getNiveau() + 1)));
+        wait.setDuration( new Duration(TIMER/(tetris.getNiveau() + 1)));
     }
 
     private void paintPiece() {
@@ -353,7 +342,6 @@ public class TetrisView implements Observateur {
         if (tetris.getGameOver()) {
             wait.stop();
             System.out.println("Game over");
-
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("GAME OVER ");
             alert.setHeaderText("Voulez vous recommencer?");
@@ -361,10 +349,7 @@ public class TetrisView implements Observateur {
             try{
                 Optional<ButtonType> result = alert.showAndWait();
                 if (result.get() == ButtonType.OK) {
-                    this.tetris = new Tetris(LARGEUR_GRILLE, HAUTEUR_GRILLE);
-                    this.tetris.addObservateur(this);
-                    this.controlleur.setMonTetris(tetris);
-                    controlleur.startGame();
+                    controlleur.resetGame(LARGEUR_GRILLE,HAUTEUR_GRILLE, this);
                     updteGrille();
                     initTimer();
                     initZoneProchainePiece();
@@ -378,10 +363,7 @@ public class TetrisView implements Observateur {
                     System.out.println("Menu");
                 }
             }catch(Exception e){
-
             }
-
-
 
         } else {
             updteGrille();

@@ -4,6 +4,8 @@ import jeuxplateau.Modele.Case;
 import jeuxplateau.Modele.Grille;
 import jeuxplateau.Modele.Piece;
 import jeuxplateau.Modele.Tetris;
+import jeuxplateau.Vue.Observateur;
+import jeuxplateau.Vue.TetrisView;
 
 import java.util.TimerTask;
 import java.util.Vector;
@@ -27,6 +29,13 @@ public class TetrisControlleur {
         monTetris.notifyObsevateur();
     }
 
+    public void resetGame(int largeur, int hauteur, Observateur observateur){
+        monTetris=new Tetris(largeur, hauteur);
+        ((TetrisView) observateur).setTetris(monTetris);
+        monTetris.addObservateur(observateur);
+        this.startGame();
+    }
+
     public void clickLeft(Piece piece){
         if(clickLeftCheck(piece)){
             this.monTetris.getMesPieces().firstElement().setPositionY(this.monTetris.getMesPieces().firstElement().getPositionY()-1);
@@ -47,6 +56,7 @@ public class TetrisControlleur {
 
             monTetris.notifyObsevateur();
         }else{
+
             changerScorePiece();
             setNewGrilleValue(piece);
             monTetris.removeFirstPiece();
@@ -88,7 +98,7 @@ public class TetrisControlleur {
         }
     }
 
-    public void clickEspace(Piece piece){
+    public void clickUp(Piece piece){
         if(pivotCheck(piece)){
             this.monTetris.getMesPieces().firstElement().pivoter();
             monTetris.notifyObsevateur();
@@ -102,12 +112,12 @@ public class TetrisControlleur {
         int positionDansGrilleI=0;
         int positionDansGrilleJ=0;
         Grille maGrille=monTetris.getGrille();
+
         for(int i=0; i<maPiece.length;i++){
             for(int j=0;j<maPiece[i].length;j++){
                 if(maPiece[i][j]!=0){
                     positionDansGrilleI=getPositionDansGrilleI(piece,i);
                     positionDansGrilleJ=getPositionDansGrilleJ(piece,j);
-
                     if((positionDansGrilleJ-1)<0 || (positionDansGrilleJ-1)>=width){
                         return false;
                     }
@@ -130,6 +140,7 @@ public class TetrisControlleur {
         for(int i=0; i<maPiece.length;i++){
             for(int j=0;j<maPiece[i].length;j++){
                 if(maPiece[i][j]!=0){
+
                     positionDansGrilleI=getPositionDansGrilleI(piece,i);
                     positionDansGrilleJ=getPositionDansGrilleJ(piece,j);
 
@@ -229,6 +240,7 @@ public class TetrisControlleur {
     }
 
     public int lineCheck(){
+
         int nbLigne=0;
         int width=monTetris.getGrille().getWidth();
         int height=monTetris.getGrille().getHeight();

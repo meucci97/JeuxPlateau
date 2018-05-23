@@ -16,6 +16,7 @@ public class Grille {
     protected Vector<Vector<Case>> tableau;
     private int width;
     private int height;
+
     public Grille(int x, int y) {
         this.height=y;
         this.width=x;
@@ -66,6 +67,7 @@ public class Grille {
     public void removeLine(int i){
         tableau.remove(i);
     }
+
     public void addNFirstRow(int i){
         Vector<Case> newRow=new Vector<>();
         for(int j=0;j<getWidth();j++){

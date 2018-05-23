@@ -32,6 +32,7 @@ public class MenuView   {
     }
 
     private void initMenu(){
+
         Button btnTetris = new Button();
         Button btnBlocus= new Button();
         Button btnPuzzle= new Button();
@@ -43,7 +44,6 @@ public class MenuView   {
             @Override
             public void handle(ActionEvent event) {
                 monJeu = new Tetris(10,20);
-                TetrisControlleur  tetrisControlleur= new TetrisControlleur((Tetris) monJeu);
                 tetrisView=new TetrisView(primaryStage,(Tetris)monJeu);
                 ((Tetris)monJeu).addObservateur(tetrisView);
                 tetrisView.initialisationAll();

@@ -10,6 +10,7 @@ package jeuxplateau.Modele;
  * @author Stefano
  */
 public class Piece {
+
     private int orientation;
     private int idPiece;
     private int[][] matricePiece;

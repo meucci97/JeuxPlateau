@@ -10,7 +10,9 @@ package jeuxplateau.Modele;
  * @author Stefano
  */
 public class Joueur {
+
     private String idJoueur;
+
     private int score;
 
     public int getScore() {
@@ -20,6 +22,7 @@ public class Joueur {
     public void setScore(int score) {
         this.score = score;
     }
+
     public Joueur(String idJoueur) {
         this.idJoueur = idJoueur;
         this.score=0;
@@ -29,7 +32,6 @@ public class Joueur {
         this.idJoueur = idJoueur;
         this.score = score;
     }
-    
 
     public String getIdJoueur() {
         return idJoueur;

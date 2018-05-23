@@ -23,8 +23,6 @@ public class JeuxPlateau extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-//        Tetris monTetris = new Tetris(5,5);
-//        monTetris.genererPieces();
         MenuView menu= new MenuView(primaryStage);
 
     }
