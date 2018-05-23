@@ -358,25 +358,29 @@ public class TetrisView implements Observateur {
             alert.setTitle("GAME OVER ");
             alert.setHeaderText("Voulez vous recommencer?");
             alert.setContentText("Votre score est de: " + tetris.getScore());
+            try{
+                Optional<ButtonType> result = alert.showAndWait();
+                if (result.get() == ButtonType.OK) {
+                    this.tetris = new Tetris(LARGEUR_GRILLE, HAUTEUR_GRILLE);
+                    this.tetris.addObservateur(this);
+                    this.controlleur.setMonTetris(tetris);
+                    controlleur.startGame();
+                    updteGrille();
+                    initTimer();
+                    initZoneProchainePiece();
+                    paintPiece();
+                    updateLabels();
+                    System.out.println(tetris.getMesPieces().size());
+                } else {
+                    System.out.println("Quitter");
+                    menuView = new MenuView(primaryStage);
+                    stopGame();
+                    System.out.println("Menu");
+                }
+            }catch(Exception e){
 
-            Optional<ButtonType> result = alert.showAndWait();
-            if (result.get() == ButtonType.OK) {
-                this.tetris = new Tetris(LARGEUR_GRILLE, HAUTEUR_GRILLE);
-                this.tetris.addObservateur(this);
-                this.controlleur.setMonTetris(tetris);
-                controlleur.startGame();
-                updteGrille();
-                initTimer();
-                initZoneProchainePiece();
-                paintPiece();
-                updateLabels();
-                System.out.println(tetris.getMesPieces().size());
-            } else {
-                System.out.println("Quitter");
-                menuView = new MenuView(primaryStage);
-                stopGame();
-                System.out.println("Menu");
             }
+
 
 
         } else {
