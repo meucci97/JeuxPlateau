@@ -34,6 +34,7 @@ public class TetrisView implements Observateur {
     private Stage primaryStage;
     private Scene plateauxTetris;
     private Group root;
+    private StackPane motherRoot;
     private GridPane grille;
     private MenuView menuView;
     private GridPane lbGrid;
@@ -54,18 +55,16 @@ public class TetrisView implements Observateur {
     public TetrisView(Stage primaryStage, Tetris tetris) {
         this.primaryStage = primaryStage;
         this.root = new Group();
-
+        this.motherRoot = new StackPane();
         this.tetris = tetris;
         controlleur = new TetrisControlleur(tetris);
     }
 
     public void initialisationAll() {
-       /* BackgroundImage myBI= new BackgroundImage(new Image("file:background2.jpg"),
+        BackgroundImage myBI= new BackgroundImage(new Image("file:background2.jpg"),
                 BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.DEFAULT,
                 BackgroundSize.DEFAULT);
-*/
-        //root.setBackground(new Background(myBI));
-
+        motherRoot.setBackground(new Background(myBI));
         // Lancement de la musique de fond
         initialiserMusique();
         //lancerMusique();
@@ -76,8 +75,8 @@ public class TetrisView implements Observateur {
         initLabels();
         paintPiece();
         initTimer();
-
-        this.plateauxTetris = new Scene(root, LARGEUR_FENETRE, HAUTEUR_FENTRE, Color.web("#323232"));
+        this.motherRoot.getChildren().add(root);
+        this.plateauxTetris = new Scene(motherRoot, LARGEUR_FENETRE, HAUTEUR_FENTRE/*, Color.web("#323232")*/);
         initClavier();
 
         primaryStage.setScene(plateauxTetris);
