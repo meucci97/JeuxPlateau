@@ -153,4 +153,43 @@ public class JsonParsing {
 
         return new Vector<Piece>();
     }
+
+    public static int [][] getNiveauPuzzle(int niveau){
+        try {
+            String filename="JSONPuzzleLevels.json";
+            JSONObject json = new JsonParsing().parseJson(filename);
+
+
+            // Tableau de toutes les pièces
+            JSONArray piecesArray = (JSONArray) json.get("level");
+            JSONObject pieceMap = (JSONObject) piecesArray.get(niveau);
+
+            // Matrice de la pièce
+            //ArrayList<ArrayList<Long>> matrice = new ArrayList<>();
+            JSONArray matriceJSON = (JSONArray) pieceMap.get("matrice");
+            int[][] matrice = new int[8][8];
+
+            for (int i = 0; i < matriceJSON.size(); i++) {
+                JSONArray elt = (JSONArray) matriceJSON.get(i);
+                int[] ligne = new int[8];
+
+                for(int j = 0; j < elt.size(); j++) {
+                    int number = (int) (long) elt.get(j);
+
+                    ligne[j] = number;
+                    System.out.print(number+" ");
+                }
+                System.out.println("");
+                matrice[i] = ligne;
+            }
+
+
+            return matrice;
+
+        } catch (Exception e) {
+            e.getStackTrace();
+        }
+
+        return null;
+    }
 }

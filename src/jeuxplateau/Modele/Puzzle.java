@@ -12,13 +12,25 @@ import jeuxplateau.Vue.Observateur;
  * @author Stefano
  */
 public class Puzzle extends Jeu {
-
-    public Puzzle(int x, int y) {
-        super(x, y);
+    private int niveau;
+    private int selectedPiece;
+    public Puzzle(int [][] plateau,int niveau) {
+        super(plateau.length,plateau.length);
+        this.niveau=niveau;
         genererJoueur("J1");
+        for (int i=0;i<plateau.length;i++){
+            for(int j=0;j<plateau[i].length;j++){
+                super.maGrille.setCase(plateau[i][j],i,j);
+                System.out.print(plateau[i][j]+" ");
+            }
+            System.out.println("");
+        }
 
     }
 
+    public Grille getGrille(){
+        return super.maGrille;
+    }
     @Override
     protected void genererPieces() {
 

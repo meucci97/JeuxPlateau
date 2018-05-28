@@ -11,16 +11,22 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import jeuxplateau.Controlleur.TetrisControlleur;
 import jeuxplateau.Modele.Jeu;
+import jeuxplateau.Modele.Puzzle;
 import jeuxplateau.Modele.Tetris;
+import jeuxplateau.utilitaires.JsonParsing;
+
+import java.util.jar.JarEntry;
 
 public class MenuView   {
     private Stage primaryStage;
     private Scene menuScene;
     private GridPane root;
     private TetrisView tetrisView;
+    private PuzzleView puzzleView;
     private Jeu monJeu;
 
     public MenuView(Stage primaryStage) {
+        //Puzzle p=new Puzzle(JsonParsing.getNiveauPuzzle(1), 1);
         this.primaryStage = primaryStage;
         root= new GridPane();
 
@@ -62,7 +68,14 @@ public class MenuView   {
         btnPuzzle.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+
                 System.out.println("Puzzle");
+                monJeu = new Puzzle(JsonParsing.getNiveauPuzzle(0), 0);
+                puzzleView=new PuzzleView(primaryStage,(Puzzle) monJeu);
+                //((Puzzle)monJeu).addObservateur(puzzleView);
+               // puzzleView.initialisationAll();
+
+                System.out.println("Tetris");
             }
         });
         GridPane grid= new GridPane();

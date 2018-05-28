@@ -52,8 +52,42 @@ public class Grille {
         });
     }
 
+    //fonction pour le tetris
     public void setCase(Piece p, int i, int j){
         tableau.get(i).get(j).setCase(p);
+    }
+
+    //Fonction pour le puzzle
+    public void setCase(int value, int i, int j){
+        tableau.get(i).get(j).setIntOccupe(value);
+        if(value==-2) {
+            tableau.get(i).get(j).setCouleur("LIMEGREEN");
+        }else if(value==-1) {
+            tableau.get(i).get(j).setCouleur("BLACK");
+        }else if(value==0){
+            tableau.get(i).get(j).setCouleur("DARKGRAY");
+        }else if(value==1){
+            tableau.get(i).get(j).setCouleur("GREEN");
+        }else if(value==2){
+            tableau.get(i).get(j).setCouleur("MEDIUMORCHID");
+        }else if(value==3){
+            tableau.get(i).get(j).setCouleur("YELLOW");
+        }else if(value==4){
+            tableau.get(i).get(j).setCouleur("SALMON");
+        }else if(value==5){
+            tableau.get(i).get(j).setCouleur("FIREBRICK");
+        }else if(value==6){
+            tableau.get(i).get(j).setCouleur("TURQUOISE");
+        }else if(value==7){
+            tableau.get(i).get(j).setCouleur("ORANGE");
+        }else if(value==8){
+            tableau.get(i).get(j).setCouleur("POWDERBLUE");
+        }else if(value==9){
+            tableau.get(i).get(j).setCouleur("BEIGE");
+        }else{
+            tableau.get(i).get(j).setCouleur("BLACK");
+        }
+
     }
 
     public int getWidth() {
