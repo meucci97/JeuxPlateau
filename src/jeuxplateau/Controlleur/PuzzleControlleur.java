@@ -20,7 +20,7 @@ public class PuzzleControlleur {
         if(valeurCase>0){
             monPuzzle.setSelectedPiece(valeurCase);
             setMovmentOrientation(valeurCase);
-            System.out.println(monPuzzle.isUpDown());
+            ////System.out.println(monPuzzle.isUpDown());
             monPuzzle.notifyObsevateur();
         }
     }
@@ -62,12 +62,12 @@ public class PuzzleControlleur {
     public void clickDown(){
         if(monPuzzle.isUpDown()){
             if(clickDownCheck()){
-                System.out.println("yes");
+                ////System.out.println("yes");
                 monPuzzle.moveDown(monPuzzle.getSelectedPiece());
                 monPuzzle.notifyObsevateur();
             }
         }else{
-            System.out.println("no");
+            //System.out.println("no");
         }
 
 
@@ -76,7 +76,7 @@ public class PuzzleControlleur {
     public void clickRight(Observateur observateur){
         if(!monPuzzle.isUpDown()){
             if(clickRightCheck()){
-                System.out.println("yes");
+                ////System.out.println("yes");
                 monPuzzle.moveRight(monPuzzle.getSelectedPiece());
                 if(monPuzzle.isLevelDone()){
                     if((monPuzzle.getNiveau()+1)<monPuzzle.NB_LEVELS)
@@ -87,36 +87,39 @@ public class PuzzleControlleur {
                 monPuzzle.notifyObsevateur();
             }
         }else{
-            System.out.println("no");
+            //System.out.println("no");
         }
     }
 
     public void clickLeft(){
         if(!monPuzzle.isUpDown()){
             if(clickLeftCheck()){
-                System.out.println("yes");
+                //System.out.println("yes");
                 monPuzzle.moveLeft(monPuzzle.getSelectedPiece());
                 monPuzzle.notifyObsevateur();
             }
         }else{
-            System.out.println("no");
+            //System.out.println("no");
         }
     }
 
     public void clickUp(){
         if(monPuzzle.isUpDown()){
             if(clickUpCheck()){
-                System.out.println("yes");
+                //System.out.println("yes");
                 monPuzzle.moveUp(monPuzzle.getSelectedPiece());
                 monPuzzle.notifyObsevateur();
             }
         }else{
-            System.out.println("no");
+            //System.out.println("no");
         }
     }
 
     public boolean clickDownCheck(){
         int tmp;
+        if(monPuzzle.getSelectedPiece()==0){
+            return false;
+        }
         for(int i=(monPuzzle.getGrille().getHeight()-1);i>=0;i--){
             for(int j=0;j<monPuzzle.getGrille().getWidth();j++){
                 if(monPuzzle.getGrille().getCase(i,j).getIntOccupe()==monPuzzle.getSelectedPiece()){
@@ -134,6 +137,9 @@ public class PuzzleControlleur {
 
     public boolean clickRightCheck(){
         int tmp;
+        if(monPuzzle.getSelectedPiece()==0){
+            return false;
+        }
         for(int i=0;i<monPuzzle.getGrille().getHeight();i++){
             for(int j=monPuzzle.getGrille().getWidth();j>=0;j--){
                 if(monPuzzle.getGrille().getCase(i,j).getIntOccupe()==monPuzzle.getSelectedPiece()){
@@ -155,6 +161,9 @@ public class PuzzleControlleur {
     }
 
     public boolean clickLeftCheck(){
+        if(monPuzzle.getSelectedPiece()==0){
+            return false;
+        }
         int tmp;
         for(int i=0;i<monPuzzle.getGrille().getHeight();i++){
             for(int j=0;j<monPuzzle.getGrille().getWidth();j++){
@@ -173,6 +182,9 @@ public class PuzzleControlleur {
     }
 
     public boolean clickUpCheck(){
+        if(monPuzzle.getSelectedPiece()==0){
+            return false;
+        }
         int tmp;
         for(int i=0;i<monPuzzle.getGrille().getHeight();i++){
             for(int j=0;j<monPuzzle.getGrille().getWidth();j++){

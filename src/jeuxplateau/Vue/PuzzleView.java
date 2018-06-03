@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -28,7 +29,7 @@ public class PuzzleView implements Observateur {
     private GridPane grille;
     private MenuView menuView;
     private GridPane lbGrid;
-
+    private GridPane pieceGrid;
     private Puzzle puzzle;
     private PuzzleControlleur controlleur;
 
@@ -65,8 +66,8 @@ public class PuzzleView implements Observateur {
         grille.setOnMousePressed(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                System.out.println("mouse click detected! "+event.getPickResult());
-                System.out.println("mouse click detected! "+event.getPickResult().getIntersectedNode().getId());
+                //System.out.println("mouse click detected! "+event.getPickResult());
+                //System.out.println("mouse click detected! "+event.getPickResult().getIntersectedNode().getId());
                 controlleur.clickSelectionPiece(Integer.parseInt(event.getPickResult().getIntersectedNode().getId()));
             }
         });
@@ -82,8 +83,8 @@ public class PuzzleView implements Observateur {
 
         // GridPane des bouttons Pause et Quitter
         GridPane btnGrid = new GridPane();
-        btnGrid.setTranslateX(280);
-        btnGrid.setTranslateY(250);
+        btnGrid.setTranslateX(250);
+        btnGrid.setTranslateY(150);
         btnGrid.setHgap(10);
         Button btnQuitter = new Button("Quitter");
         Button btnReset = new Button("Reset");
@@ -95,17 +96,17 @@ public class PuzzleView implements Observateur {
         btnQuitter.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                System.out.println("Quitter");
+                //System.out.println("Quitter");
                 menuView = new MenuView(primaryStage);
 
-                System.out.println("Menu");
+                //System.out.println("Menu");
             }
         });
 
         btnReset.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                System.out.println("Reset");
+                //System.out.println("Reset");
                 controlleur.resetGame(vuePuzzle);
                 initClavier();
             }
@@ -134,19 +135,51 @@ public class PuzzleView implements Observateur {
     private void initZonePieceChoisie() {
         // GridPane zone pièce
         int selectedPiece=puzzle.getSelectedPiece();
-        GridPane pieceGrid = new GridPane();
-        pieceGrid.setTranslateX(300);
+         pieceGrid = new GridPane();
+        pieceGrid.setTranslateX(250);
         pieceGrid.setTranslateY(50);
+        Label lbPiece = new Label("Pièces sélectionné : ");
+        lbPiece.setTextFill(Color.web("#cd853f"));
+        pieceGrid.getChildren().addAll(lbPiece);
+        pieceGrid.setRowIndex(lbPiece, 0);
+        pieceGrid.setColumnIndex(lbPiece, 0);
+        Label lbniveau = new Label("Niveau "+(puzzle.getNiveau()+1));
+        lbniveau.setTextFill(Color.web("#cd853f"));
+        pieceGrid.getChildren().addAll(lbniveau);
+        pieceGrid.setRowIndex(lbniveau, 1);
+        pieceGrid.setColumnIndex(lbniveau, 0);
         Rectangle rec = new Rectangle();
         rec.setWidth(25);
         rec.setHeight(25);
         rec.setFill(Color.web(puzzle.getSelecedPieceColor()));
         pieceGrid.setRowIndex(rec, 0);
-        pieceGrid.setColumnIndex(rec, 0);
+        pieceGrid.setColumnIndex(rec, 1);
         pieceGrid.getChildren().addAll(rec);
-
         this.root.getChildren().add(pieceGrid);
     }
+     private void updateZonePieceChoisie(){
+         int selectedPiece=puzzle.getSelectedPiece();
+         pieceGrid.getChildren().clear();
+
+         Label lbPiece = new Label("Pièces sélectionné : ");
+         lbPiece.setTextFill(Color.web("#cd853f"));
+         pieceGrid.getChildren().addAll(lbPiece);
+         pieceGrid.setRowIndex(lbPiece, 0);
+         pieceGrid.setColumnIndex(lbPiece, 0);
+         Label lbniveau = new Label("Niveau "+(puzzle.getNiveau()+1));
+         lbniveau.setTextFill(Color.web("#cd853f"));
+         pieceGrid.getChildren().addAll(lbniveau);
+         pieceGrid.setRowIndex(lbniveau, 1);
+         pieceGrid.setColumnIndex(lbniveau, 0);
+         Rectangle rec = new Rectangle();
+         rec.setWidth(25);
+         rec.setHeight(25);
+         rec.setFill(Color.web(puzzle.getSelecedPieceColor()));
+         pieceGrid.setRowIndex(rec, 0);
+         pieceGrid.setColumnIndex(rec, 1);
+         pieceGrid.getChildren().addAll(rec);
+
+     }
 
     private void initClavier() {
         root.requestFocus();
@@ -155,19 +188,19 @@ public class PuzzleView implements Observateur {
             public void handle(KeyEvent event) {
                 switch (event.getCode()) {
                     case DOWN:
-                        System.out.println("down");
+                        //System.out.println("down");
                         controlleur.clickDown();
                         break;
                     case RIGHT:
-                        System.out.println("right");
+                        //System.out.println("right");
                         controlleur.clickRight(vuePuzzle);
                         break;
                     case LEFT:
-                        System.out.println("left");
+                        //System.out.println("left");
                         controlleur.clickLeft();
                         break;
                     case UP:
-                        System.out.println("up");
+                        //System.out.println("up");
                         controlleur.clickUp();
                         break;
                 }
@@ -186,19 +219,19 @@ public class PuzzleView implements Observateur {
                 Optional<ButtonType> result = alert.showAndWait();
                 if (result.get() == ButtonType.OK) {
                     controlleur.resetGame(vuePuzzle);
-                    initZonePieceChoisie();
+                    updateZonePieceChoisie();
                     initGrille();
 
                    // updateLabels();
                 } else {
-                    System.out.println("Quitter");
+                    //System.out.println("Quitter");
                     menuView = new MenuView(primaryStage);
-                    System.out.println("Menu");
+                    //System.out.println("Menu");
                 }
             }catch(Exception e){
             }
         }else{
-            initZonePieceChoisie();
+            updateZonePieceChoisie();
             initGrille();
         }
 
