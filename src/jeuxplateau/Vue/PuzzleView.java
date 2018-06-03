@@ -4,7 +4,9 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -13,16 +15,12 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import jeuxplateau.Controlleur.PuzzleControlleur;
-import jeuxplateau.Controlleur.TetrisControlleur;
-import jeuxplateau.Modele.Jeu;
-import jeuxplateau.Modele.Piece;
 import jeuxplateau.Modele.Puzzle;
-import jeuxplateau.Modele.Tetris;
 
-import static javafx.scene.paint.Color.BLACK;
+import java.util.Optional;
 
 public class PuzzleView implements Observateur {
-    private PuzzleView vuPuzzle = this;
+    private PuzzleView vuePuzzle = this;
     private Stage primaryStage;
     private Scene plateauxPuzzle;
     private Group root;
@@ -76,14 +74,8 @@ public class PuzzleView implements Observateur {
 
     }
 
-    private void updteGrille() {
-        int heigth= puzzle.getGrille().getHeight();
-        int width= puzzle.getGrille().getWidth();
-        for (int ligne = 0; ligne < heigth; ligne++) {
-            for (int colonne = 0; colonne < width; colonne++) {
-                ((Rectangle) grille.lookup("#Rec" + ((width * ligne) + colonne))).setFill(Color.web(puzzle.getGrille().getCase(ligne, colonne).getCouleur()));
-            }
-        }
+    public void setPuzzle(Puzzle puzzle) {
+        this.puzzle = puzzle;
     }
 
     private void initBouttons() {
@@ -114,7 +106,8 @@ public class PuzzleView implements Observateur {
             @Override
             public void handle(ActionEvent event) {
                 System.out.println("Reset");
-                //controlleur.resetGame(LARGEUR_GRILLE,HAUTEUR_GRILLE, vuTetris);
+                controlleur.resetGame(vuePuzzle);
+                initClavier();
             }
         });
     }
@@ -167,7 +160,7 @@ public class PuzzleView implements Observateur {
                         break;
                     case RIGHT:
                         System.out.println("right");
-                        controlleur.clickRight();
+                        controlleur.clickRight(vuePuzzle);
                         break;
                     case LEFT:
                         System.out.println("left");
@@ -181,9 +174,33 @@ public class PuzzleView implements Observateur {
             }
         });
     }
+
     @Override
     public void update() {
-        initZonePieceChoisie();
-        initGrille();
+        if(puzzle.isLevelDone()){
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("GAME OVER ");
+            alert.setHeaderText("Voulez vous recommencer?");
+            alert.setContentText("");
+            try{
+                Optional<ButtonType> result = alert.showAndWait();
+                if (result.get() == ButtonType.OK) {
+                    controlleur.resetGame(vuePuzzle);
+                    initZonePieceChoisie();
+                    initGrille();
+
+                   // updateLabels();
+                } else {
+                    System.out.println("Quitter");
+                    menuView = new MenuView(primaryStage);
+                    System.out.println("Menu");
+                }
+            }catch(Exception e){
+            }
+        }else{
+            initZonePieceChoisie();
+            initGrille();
+        }
+
     }
 }

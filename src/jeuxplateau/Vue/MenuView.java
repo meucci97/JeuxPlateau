@@ -68,9 +68,8 @@ public class MenuView   {
         btnPuzzle.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-
                 System.out.println("Puzzle");
-                monJeu = new Puzzle(JsonParsing.getNiveauPuzzle(1), 1);
+                monJeu = new Puzzle(JsonParsing.getNiveauPuzzle(0), 0);
                 puzzleView=new PuzzleView(primaryStage,(Puzzle) monJeu);
                 ((Puzzle)monJeu).addObservateur(puzzleView);
 

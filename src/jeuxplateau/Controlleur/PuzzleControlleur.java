@@ -1,6 +1,9 @@
 package jeuxplateau.Controlleur;
 
 import jeuxplateau.Modele.Puzzle;
+import jeuxplateau.Vue.Observateur;
+import jeuxplateau.Vue.PuzzleView;
+import jeuxplateau.utilitaires.JsonParsing;
 
 public class PuzzleControlleur {
     private Puzzle monPuzzle;
@@ -69,17 +72,25 @@ public class PuzzleControlleur {
 
 
     }
-    public void clickRight(){
+
+    public void clickRight(Observateur observateur){
         if(!monPuzzle.isUpDown()){
             if(clickRightCheck()){
                 System.out.println("yes");
                 monPuzzle.moveRight(monPuzzle.getSelectedPiece());
+                if(monPuzzle.isLevelDone()){
+                    if((monPuzzle.getNiveau()+1)<monPuzzle.NB_LEVELS)
+                    monPuzzle= new Puzzle(JsonParsing.getNiveauPuzzle(monPuzzle.getNiveau()+1), monPuzzle.getNiveau()+1);
+                    ((PuzzleView)observateur).setPuzzle(monPuzzle);
+                    monPuzzle.addObservateur(observateur);
+                }
                 monPuzzle.notifyObsevateur();
             }
         }else{
             System.out.println("no");
         }
     }
+
     public void clickLeft(){
         if(!monPuzzle.isUpDown()){
             if(clickLeftCheck()){
@@ -91,6 +102,7 @@ public class PuzzleControlleur {
             System.out.println("no");
         }
     }
+
     public void clickUp(){
         if(monPuzzle.isUpDown()){
             if(clickUpCheck()){
@@ -109,6 +121,7 @@ public class PuzzleControlleur {
             for(int j=0;j<monPuzzle.getGrille().getWidth();j++){
                 if(monPuzzle.getGrille().getCase(i,j).getIntOccupe()==monPuzzle.getSelectedPiece()){
                     if(monPuzzle.getGrille().getCase((i+1),j).getIntOccupe()!=0){
+
                         return false;
                     }else{
                         return true;
@@ -118,6 +131,7 @@ public class PuzzleControlleur {
         }
         return true;
     }
+
     public boolean clickRightCheck(){
         int tmp;
         for(int i=0;i<monPuzzle.getGrille().getHeight();i++){
@@ -125,7 +139,11 @@ public class PuzzleControlleur {
                 if(monPuzzle.getGrille().getCase(i,j).getIntOccupe()==monPuzzle.getSelectedPiece()){
                     if(monPuzzle.getGrille().getCase(i,j).getIntOccupe()==monPuzzle.getSelectedPiece()){
                         if(monPuzzle.getGrille().getCase(i,(j+1)).getIntOccupe()!=0){
-                            return false;
+                            if(monPuzzle.getGrille().getCase(i,(j+1)).getIntOccupe()==-2){
+                                return true;
+                            }else{
+                                return false;
+                            }
                         }else{
                             return true;
                         }
@@ -135,6 +153,7 @@ public class PuzzleControlleur {
         }
         return true;
     }
+
     public boolean clickLeftCheck(){
         int tmp;
         for(int i=0;i<monPuzzle.getGrille().getHeight();i++){
@@ -152,6 +171,7 @@ public class PuzzleControlleur {
         }
         return true;
     }
+
     public boolean clickUpCheck(){
         int tmp;
         for(int i=0;i<monPuzzle.getGrille().getHeight();i++){
@@ -170,4 +190,10 @@ public class PuzzleControlleur {
         return true;
     }
 
+    public void resetGame(Observateur observateur){
+        monPuzzle= new Puzzle(JsonParsing.getNiveauPuzzle(0), 0);
+        ((PuzzleView)observateur).setPuzzle(monPuzzle);
+        monPuzzle.addObservateur(observateur);
+        monPuzzle.notifyObsevateur();
+    }
 }

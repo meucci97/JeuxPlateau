@@ -15,13 +15,18 @@ public class Puzzle extends Jeu {
     private int niveau;
     private int selectedPiece;
     private boolean upDown;
-
+    private boolean levelDone;
+    public static final int NB_LEVELS=3;
     public boolean isUpDown() {
         return upDown;
     }
 
     public void setUpDown(boolean upDown) {
         this.upDown = upDown;
+    }
+
+    public boolean isLevelDone() {
+        return levelDone;
     }
 
     public int getNiveau() {
@@ -40,6 +45,7 @@ public class Puzzle extends Jeu {
         super(plateau.length,plateau.length);
         this.niveau=niveau;
         this.selectedPiece=0;
+        this.levelDone=false;
         genererJoueur("J1");
         for (int i=0;i<plateau.length;i++){
             for(int j=0;j<plateau[i].length;j++){
@@ -75,6 +81,7 @@ public class Puzzle extends Jeu {
             }
         }
     }
+
     public void moveDown(int selectedPiece){
         int tmp;
         for(int i=(maGrille.getHeight()-1);i>=0;i--){
@@ -87,6 +94,7 @@ public class Puzzle extends Jeu {
             }
         }
     }
+
     public void moveLeft(int selectedPiece){
         int tmp;
         for(int i=0;i<maGrille.getHeight();i++){
@@ -99,14 +107,20 @@ public class Puzzle extends Jeu {
             }
         }
     }
+
     public void moveRight(int selectedPiece){
         int tmp;
         for(int i=0;i<maGrille.getHeight();i++){
             for(int j=maGrille.getWidth();j>=0;j--){
                 if(maGrille.getCase(i,j).getIntOccupe()==selectedPiece){
                     tmp=maGrille.getCase(i,(j+1)).getIntOccupe();
-                    maGrille.setCase(selectedPiece,(i),(j+1));
-                    maGrille.setCase(tmp,i,j);
+                    if(tmp==-2){
+                        this.levelDone=true;
+                    }else{
+                        maGrille.setCase(selectedPiece,(i),(j+1));
+                        maGrille.setCase(tmp,i,j);
+                    }
+
                 }
             }
         }
