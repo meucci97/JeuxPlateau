@@ -70,10 +70,9 @@ public class MenuView   {
             public void handle(ActionEvent event) {
 
                 System.out.println("Puzzle");
-                monJeu = new Puzzle(JsonParsing.getNiveauPuzzle(0), 0);
+                monJeu = new Puzzle(JsonParsing.getNiveauPuzzle(1), 1);
                 puzzleView=new PuzzleView(primaryStage,(Puzzle) monJeu);
-                //((Puzzle)monJeu).addObservateur(puzzleView);
-               // puzzleView.initialisationAll();
+                ((Puzzle)monJeu).addObservateur(puzzleView);
 
                 System.out.println("Tetris");
             }

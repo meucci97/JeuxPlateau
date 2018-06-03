@@ -89,6 +89,35 @@ public class Grille {
         }
 
     }
+    public String getCouleur(int value){
+        if(value==-2) {
+            return "LIMEGREEN";
+        }else if(value==-1) {
+            return "BLACK";
+        }else if(value==0){
+            return "DARKGRAY";
+        }else if(value==1){
+            return "GREEN";
+        }else if(value==2){
+            return "MEDIUMORCHID";
+        }else if(value==3){
+            return "YELLOW";
+        }else if(value==4){
+            return "SALMON";
+        }else if(value==5){
+            return "FIREBRICK";
+        }else if(value==6){
+            return "TURQUOISE";
+        }else if(value==7){
+            return "ORANGE";
+        }else if(value==8){
+            return "POWDERBLUE";
+        }else if(value==9){
+            return "BEIGE";
+        }else{
+            return "BLACK";
+        }
+    }
 
     public int getWidth() {
         return width;

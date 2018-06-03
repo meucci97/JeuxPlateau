@@ -6,6 +6,7 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
@@ -14,13 +15,16 @@ import javafx.stage.Stage;
 import jeuxplateau.Controlleur.PuzzleControlleur;
 import jeuxplateau.Controlleur.TetrisControlleur;
 import jeuxplateau.Modele.Jeu;
+import jeuxplateau.Modele.Piece;
 import jeuxplateau.Modele.Puzzle;
 import jeuxplateau.Modele.Tetris;
 
-public class PuzzleView {
+import static javafx.scene.paint.Color.BLACK;
+
+public class PuzzleView implements Observateur {
     private PuzzleView vuPuzzle = this;
     private Stage primaryStage;
-    private Scene plateauxTetris;
+    private Scene plateauxPuzzle;
     private Group root;
     private StackPane motherRoot;
     private GridPane grille;
@@ -39,7 +43,7 @@ public class PuzzleView {
         this.motherRoot = new StackPane();
         this.puzzle = puzzle;
         initialisationAll();
-        //controlleur = new PuzzleControlleur(puzzle);
+        controlleur = new PuzzleControlleur(puzzle);
     }
 
 
@@ -65,7 +69,7 @@ public class PuzzleView {
             public void handle(MouseEvent event) {
                 System.out.println("mouse click detected! "+event.getPickResult());
                 System.out.println("mouse click detected! "+event.getPickResult().getIntersectedNode().getId());
-
+                controlleur.clickSelectionPiece(Integer.parseInt(event.getPickResult().getIntersectedNode().getId()));
             }
         });
         this.root.getChildren().add(grille);
@@ -99,7 +103,10 @@ public class PuzzleView {
         btnQuitter.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+                System.out.println("Quitter");
+                menuView = new MenuView(primaryStage);
 
+                System.out.println("Menu");
             }
         });
 
@@ -119,17 +126,64 @@ public class PuzzleView {
                 BackgroundSize.DEFAULT);
 
         motherRoot.setBackground(new Background(myBI));
-        // Lancement de la musique de fond
 
         initGrille();
         initBouttons();
-
+        initZonePieceChoisie();
 
         this.motherRoot.getChildren().add(root);
-        this.plateauxTetris = new Scene(motherRoot, LARGEUR_FENETRE, HAUTEUR_FENTRE/*, Color.web("#323232")*/);
-
-        primaryStage.setScene(plateauxTetris);
+        this.plateauxPuzzle = new Scene(motherRoot, LARGEUR_FENETRE, HAUTEUR_FENTRE/*, Color.web("#323232")*/);
+        initClavier();
+        primaryStage.setScene(plateauxPuzzle);
         primaryStage.setTitle("Tetris");
     }
 
+    private void initZonePieceChoisie() {
+        // GridPane zone pièce
+        int selectedPiece=puzzle.getSelectedPiece();
+        GridPane pieceGrid = new GridPane();
+        pieceGrid.setTranslateX(300);
+        pieceGrid.setTranslateY(50);
+        Rectangle rec = new Rectangle();
+        rec.setWidth(25);
+        rec.setHeight(25);
+        rec.setFill(Color.web(puzzle.getSelecedPieceColor()));
+        pieceGrid.setRowIndex(rec, 0);
+        pieceGrid.setColumnIndex(rec, 0);
+        pieceGrid.getChildren().addAll(rec);
+
+        this.root.getChildren().add(pieceGrid);
+    }
+
+    private void initClavier() {
+        root.requestFocus();
+        this.plateauxPuzzle.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                switch (event.getCode()) {
+                    case DOWN:
+                        System.out.println("down");
+                        controlleur.clickDown();
+                        break;
+                    case RIGHT:
+                        System.out.println("right");
+                        controlleur.clickRight();
+                        break;
+                    case LEFT:
+                        System.out.println("left");
+                        controlleur.clickLeft();
+                        break;
+                    case UP:
+                        System.out.println("up");
+                        controlleur.clickUp();
+                        break;
+                }
+            }
+        });
+    }
+    @Override
+    public void update() {
+        initZonePieceChoisie();
+        initGrille();
+    }
 }
