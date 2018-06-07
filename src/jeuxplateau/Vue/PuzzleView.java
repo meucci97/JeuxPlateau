@@ -129,7 +129,7 @@ public class PuzzleView implements Observateur {
         this.plateauxPuzzle = new Scene(motherRoot, LARGEUR_FENETRE, HAUTEUR_FENTRE/*, Color.web("#323232")*/);
         initClavier();
         primaryStage.setScene(plateauxPuzzle);
-        primaryStage.setTitle("Tetris");
+        primaryStage.setTitle("Puzzle");
     }
 
     private void initZonePieceChoisie() {

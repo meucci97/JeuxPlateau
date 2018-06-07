@@ -33,7 +33,7 @@ public class MenuView   {
         initMenu();
         menuScene = new Scene(root, 300, 250);
         primaryStage.setScene(menuScene);
-        primaryStage.setTitle("Hello World!");
+        primaryStage.setTitle("Jeux Plateaux");
         primaryStage.show();
     }
 
@@ -43,7 +43,6 @@ public class MenuView   {
         Button btnBlocus= new Button();
         Button btnPuzzle= new Button();
         btnTetris.setText("Tetris");
-        btnBlocus.setText("Blocus");
         btnPuzzle.setText("Puzzle");
 
         btnTetris.setOnAction(new EventHandler<ActionEvent>() {
@@ -58,13 +57,6 @@ public class MenuView   {
             }
         });
 
-        btnBlocus.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                System.out.println("Blocus");
-            }
-        });
-
         btnPuzzle.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -73,18 +65,13 @@ public class MenuView   {
                 puzzleView=new PuzzleView(primaryStage,(Puzzle) monJeu);
                 ((Puzzle)monJeu).addObservateur(puzzleView);
 
-                System.out.println("Tetris");
+                System.out.println("Puzzle");
             }
         });
         GridPane grid= new GridPane();
         root.setAlignment(Pos.CENTER);
         root.add(btnTetris,0,2);
-        root.add(btnBlocus,1,2);
-        root.add(btnPuzzle,2,2);
-
-
+        root.add(btnPuzzle,1,2);
 
     }
-
-
 }
